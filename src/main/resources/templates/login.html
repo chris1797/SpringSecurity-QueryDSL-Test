@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+        function login() {
+        	var form = $('#loginForm')[0];
+        	alert(form.memberid.value);
+            fetch("/login", {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authentication': 'Bearer ' + localStorage.getItem("jwt")
+                },
+                body : JSON.stringify(form)
+            }).then(res => res.json())
+                .then(token => {
+                    localStorage.setItem("jwt",token.accessToken);
+                    alert("로그인 되었습니다");
+                });
+            };
+
+    function info() {
+        fetch("/info",{
+        method: 'get',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("jwt"),
+        }
+        }).then(res => res.json())
+        .then(json => alert("이름 : " + json.memberid+", 비밀번호 : " + json.password))
+    };
+
+    </script>
+<!--    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
+</head>
+<body>
+<div class="container">
+    <div class="my-4">
+        <h2>로그인</h2>
+    </div>
+    <form method="post" th:object="${member}" id="loginForm" onsubmit="return login();">
+        <div class="mb-3">
+            <label for="memberid" class="form-label">member_id</label>
+            <input type="text" class="form-control" id="memberid" name="memberid" th:field="*{memberid}">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" th:field="*{password}">
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+<!--        <button type="button" class="btn btn-primary" onclick="login();">로그인</button>-->
+        <button type="button" onclick="info();">내정보 확인</button>
+    </form>
+</div>
+</body>
+</html>
