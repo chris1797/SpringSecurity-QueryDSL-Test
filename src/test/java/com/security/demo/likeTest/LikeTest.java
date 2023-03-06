@@ -3,7 +3,7 @@ package com.security.demo.likeTest;
 
 import com.security.demo.entity.Article;
 import com.security.demo.entity.Member;
-import com.zaritalk.demo.service.LikeService;
+import com.security.demo.service.LikesService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class LikeTest {
 
     @Autowired
-    LikeService likeService;
+    LikesService likeService;
 
     @Autowired
     MockMvc mockMvc;
@@ -29,7 +29,7 @@ public class LikeTest {
     void addlikeTest() throws Exception {
         Article article = createArticle();
 
-        mockMvc.perform(post("/board/like" + article.getArticle_id())).andExpect(status().isOk());
+        mockMvc.perform(post("/board/like" + article.getArticle_idx())).andExpect(status().isOk());
     }
 
     private Article createArticle() throws Exception {
@@ -44,8 +44,8 @@ public class LikeTest {
 
     private Member createMember() throws Exception {
         Member member =  Member.builder()
-                .nickName("닉네임")
-                .account_id("test id")
+                .nickname("닉네임")
+                .memberid("test id")
                 .build();
 
         return member;
