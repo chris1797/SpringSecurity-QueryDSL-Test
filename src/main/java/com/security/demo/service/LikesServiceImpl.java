@@ -19,8 +19,6 @@ public class LikesServiceImpl implements LikesService{
     private final LikeRepository likeRepository;
     private final ArticleRepository articleRepository;
 
-
-
     /**
      * article_id에 해당하는 글에 user의 좋아요 추가
      */
@@ -33,7 +31,6 @@ public class LikesServiceImpl implements LikesService{
             likeRepository.save(new Likes(article.get(), member));
             return true;
         }
-
         return false;
     }
 
