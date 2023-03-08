@@ -19,7 +19,6 @@ public class ArticleController {
 
     private final ArticleService articleService;
     private final LikesService likeService;
-    private final MemberService memberService;
 
 
     // 글전체리스트 보기
