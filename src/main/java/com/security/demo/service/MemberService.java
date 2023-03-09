@@ -8,9 +8,7 @@ import java.util.Optional;
 
 public interface MemberService {
 
-    String login(String userName, String password);
-
-    String createToken(Member member);
+    String login(String memberid, String password);
 
     PasswordEncoder passwordEncoder();
 

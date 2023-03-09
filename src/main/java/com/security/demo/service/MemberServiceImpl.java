@@ -28,14 +28,8 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public String login(String userName, String password) {
-        return JwtTokenProvider.createToken(userName, secretKey, expiredMs);
-    }
-
-    @Override
-    public String createToken(Member member) {
-        Optional<Member> _member = memberRepository.findByMemberid(member.getMemberid());
-        return _member.get().getAccount_type() + " " + _member.get().getMember_idx();
+    public String login(String memberid, String password) {
+        return JwtTokenProvider.createToken(memberid, secretKey, expiredMs);
     }
 
 

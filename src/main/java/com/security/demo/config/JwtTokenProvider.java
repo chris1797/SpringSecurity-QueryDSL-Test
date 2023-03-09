@@ -32,8 +32,9 @@ public class JwtTokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis())) // 토큰 발행 시간
                 .setExpiration(new Date(System.currentTimeMillis() + expiredMs)) // 토큰 만료시간 설정
-//                .signWith(SignatureAlgorithm.HS256, secretKey) // deprecated
-                .signWith(key, SignatureAlgorithm.HS256) // 해당 key, HS256알고리즘으로 Sign한다는 의미
+//              .signWith(SignatureAlgorithm.HS256, secretKey) // deprecated
+                .signWith(key, SignatureAlgorithm.HS256)
+                // key를 받아 HS256(서명 알고리즘)으로 서명한다는 의미 (Apple은 RS256 알고리즘으로 서명해야 한다.)
                 .compact();
     }
 

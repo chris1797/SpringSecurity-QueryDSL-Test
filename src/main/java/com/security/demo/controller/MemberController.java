@@ -1,5 +1,6 @@
 package com.security.demo.controller;
 
+import com.security.demo.config.LoginRequest;
 import com.security.demo.config.TokenResponse;
 import com.security.demo.dto.MemberDTO;
 import com.security.demo.entity.Member;
@@ -27,19 +28,18 @@ public class MemberController {
 
 
     @GetMapping("/login")
-    String login(Model model, Authentication authentication) {
-        model.addAttribute("member", new Member());
-
+    String login(Model model) {
+        model.addAttribute("member", new LoginRequest());
         return "login";
     }
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseEntity<TokenResponse> login2(Member member) {
+    public ResponseEntity<TokenResponse> login2(LoginRequest member) {
         System.out.println("member ID : " + member.getMemberid());
         System.out.println("member PW : " + member.getPassword());
 
-        return ResponseEntity.ok().body(new TokenResponse(memberService.login("jaehun", "12345"), "Bearer"));
+        return ResponseEntity.ok().body(new TokenResponse(memberService.login(member.getMemberid(), member.getPassword()), "Bearer"));
     }
 
 
