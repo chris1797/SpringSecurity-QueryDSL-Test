@@ -5,6 +5,7 @@ import com.security.demo.entity.Role;
 import com.security.demo.entity.Member;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 @Data
 @Component("MemberDTO")

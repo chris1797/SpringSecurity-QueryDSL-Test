@@ -7,6 +7,7 @@ import com.security.demo.entity.Member;
 import com.security.demo.entity.Role;
 import com.security.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -19,9 +20,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Controller
-@Transactional
+@RestController
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -34,12 +35,12 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    @ResponseBody
-    public ResponseEntity<TokenResponse> login2(LoginRequest member) {
-        System.out.println("member ID : " + member.getMemberid());
-        System.out.println("member PW : " + member.getPassword());
+    public ResponseEntity<TokenResponse> login(LoginRequest loginRequest) {
 
-        return ResponseEntity.ok().body(new TokenResponse(memberService.login(member.getMemberid(), member.getPassword()), "Bearer"));
+        System.out.println("접속한 ID : " + loginRequest.getMemberid());
+        System.out.println("접속한 Password : " + loginRequest.getPassword());
+
+        return ResponseEntity.ok().body(new TokenResponse(memberService.login(loginRequest.getMemberid(), loginRequest.getPassword()), "Bearer"));
     }
 
 

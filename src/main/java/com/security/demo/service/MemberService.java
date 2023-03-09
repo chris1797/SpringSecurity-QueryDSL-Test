@@ -1,5 +1,6 @@
 package com.security.demo.service;
 
+import com.security.demo.config.LoginRequest;
 import com.security.demo.dto.MemberDTO;
 import com.security.demo.entity.Member;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,7 +11,10 @@ public interface MemberService {
 
     String login(String memberid, String password);
 
+    String login(LoginRequest loginRequest);
+
     PasswordEncoder passwordEncoder();
+
 
     Optional<Member> findByMemberid(String account_id);
 

@@ -1,5 +1,6 @@
 package com.security.demo.service;
 
+import com.security.demo.config.LoginRequest;
 import com.security.demo.dto.MemberDTO;
 import com.security.demo.entity.Member;
 import com.security.demo.entity.Role_withdraw;
@@ -23,13 +24,17 @@ public class MemberServiceImpl implements MemberService {
 
     @Value("${jwt.secret}")
     private String secretKey;
-
     private Long expiredMs = 1000 * 60 * 60L;
 
 
     @Override
     public String login(String memberid, String password) {
-        return JwtTokenProvider.createToken(memberid, secretKey, expiredMs);
+        return null;
+    }
+
+    @Override
+    public String login(LoginRequest loginRequest) {
+        return jwtTokenProvider.createToken(loginRequest);
     }
 
 
@@ -39,16 +44,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member signUp(MemberDTO member) {
-        Member _member = Member.builder()
-                .memberid(member.getMemberid())
-                .password(passwordEncoder().encode(member.getPassword()))
-                .nickname(member.getNickname())
-                .account_type(member.getAccount_type())
+    public Member signUp(MemberDTO memberDTO) {
+        Member member2 = memberDTO.toEntity();
+        Member member = Member.builder()
+                .memberid(memberDTO.getMemberid())
+                .password(passwordEncoder().encode(memberDTO.getPassword()))
+                .nickname(memberDTO.getNickname())
+                .account_type(memberDTO.getAccount_type())
                 .quit(Role_withdraw.ACTIVE) // 활성유저로 회원가입 시키기
                 .build();
 
-        return memberRepository.save(_member);
+        return memberRepository.save(member);
     }
 
     @Override

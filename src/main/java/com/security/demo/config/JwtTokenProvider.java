@@ -1,5 +1,7 @@
 package com.security.demo.config;
 
+import com.security.demo.entity.Member;
+import com.security.demo.repository.MemberRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,20 +11,23 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 public class JwtTokenProvider {
-    private String secretKey;
-    private long validityInMilliseconds;
+
+    private final String secretKey;
+    private final MemberRepository memberRepository;
+
 
     public JwtTokenProvider(@Value("${security.jwt.token.secret-key}") String secretKey,
-                            @Value("${security.jwt.token.expire-length}") long validityInMilliseconds) {
+                            @Value("${security.jwt.token.expire-length}") long validityInMilliseconds, MemberRepository memberRepository) {
         this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
-        this.validityInMilliseconds = validityInMilliseconds;
+        this.memberRepository = memberRepository;
     }
 
-    //토큰생성
-    public static String createToken(String userName, String secretKey, Long expiredMs) {
+    //토큰생성 (username, secretKey 사용)
+    public String createToken(String userName, String secretKey, Long expiredMs) {
         Claims claims = Jwts.claims();
         claims.put("userName", userName);
 
@@ -36,6 +41,14 @@ public class JwtTokenProvider {
                 .signWith(key, SignatureAlgorithm.HS256)
                 // key를 받아 HS256(서명 알고리즘)으로 서명한다는 의미 (Apple은 RS256 알고리즘으로 서명해야 한다.)
                 .compact();
+    }
+
+    //토큰생성 (LoginRequest 사용)
+    public String createToken(LoginRequest loginRequest) {
+        Member member = memberRepository.findByMemberid(loginRequest.getMemberid())
+                .orElseThrow(() -> new NullPointerException("해당되는 유저가 없습니다."));
+
+        return member.getAccount_type() + " " + member.getMember_idx(); // ex) LESSOR 1
     }
 
     //토큰에서 값 추출
