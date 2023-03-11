@@ -1,9 +1,9 @@
 package com.security.demo.config;
 
 import com.security.demo.entity.Member;
-import com.security.demo.repository.MemberRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,23 +11,27 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
-import java.util.Optional;
 
+@Getter
 @Component
 public class JwtTokenProvider {
 
     private final String secretKey;
-    private final MemberRepository memberRepository;
+    private final Long validityInMilliseconds;
+    private final String token;
+
 
 
     public JwtTokenProvider(@Value("${security.jwt.token.secret-key}") String secretKey,
-                            @Value("${security.jwt.token.expire-length}") long validityInMilliseconds, MemberRepository memberRepository) {
+                            @Value("${security.jwt.token.expire-length}") long validityInMilliseconds,
+                            Member member) {
         this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
-        this.memberRepository = memberRepository;
+        this.validityInMilliseconds = validityInMilliseconds;
+        this.token = createToken(member);
     }
 
     //토큰생성 (username, secretKey 사용)
-    public String createToken(String userName, String secretKey, Long expiredMs) {
+    private String createToken(String userName, String secretKey, Long expiredMs) {
         Claims claims = Jwts.claims();
         claims.put("userName", userName);
 
@@ -43,16 +47,14 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    //토큰생성 (LoginRequest 사용)
-    public String createToken(LoginRequest loginRequest) {
-        Member member = memberRepository.findByMemberid(loginRequest.getMemberid())
-                .orElseThrow(() -> new NullPointerException("해당되는 유저가 없습니다."));
-
-        return member.getAccount_type() + " " + member.getMember_idx(); // ex) LESSOR 1
+    //토큰생성 (인증된 member 인스턴스를 받아 토큰 생성)
+    private String createToken(Member member) {
+        // ex) LESSOR 1
+        return member.getAccount_type() + " " + member.getMember_idx();
     }
 
     //토큰에서 값 추출
-    public String getSubject(String token) {
+    private String getSubject(String token) {
         Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -63,7 +65,7 @@ public class JwtTokenProvider {
     }
 
     // 토큰 검증
-    public boolean validateToken(String token) {
+    private boolean validateToken(String token) {
         Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
 
         try {

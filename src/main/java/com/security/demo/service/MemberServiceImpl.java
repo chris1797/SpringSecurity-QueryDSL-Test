@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    private final JwtTokenProvider jwtTokenProvider;
+
 
     @Value("${jwt.secret}")
     private String secretKey;
@@ -34,7 +34,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public String login(LoginRequest loginRequest) {
-        return jwtTokenProvider.createToken(loginRequest);
+        Member member = memberRepository.findByMemberid(loginRequest.getMemberid())
+                .orElseThrow(() -> new NullPointerException("해당 유저정보가 없습니다."));
+
+        JwtTokenProvider jwtTokenProvider = new JwtTokenProvider(secretKey, expiredMs, member);
+        return jwtTokenProvider.getToken();
     }
 
 
