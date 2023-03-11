@@ -28,11 +28,6 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public String login(String memberid, String password) {
-        return null;
-    }
-
-    @Override
     public String login(LoginRequest loginRequest) {
         Member member = memberRepository.findByMemberid(loginRequest.getMemberid())
                 .orElseThrow(() -> new NullPointerException("해당 유저정보가 없습니다."));

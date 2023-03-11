@@ -40,7 +40,7 @@ public class MemberController {
         System.out.println("접속한 ID : " + loginRequest.getMemberid());
         System.out.println("접속한 Password : " + loginRequest.getPassword());
 
-        return ResponseEntity.ok().body(new TokenResponse(memberService.login(loginRequest.getMemberid(), loginRequest.getPassword()), "Bearer"));
+        return ResponseEntity.ok().body(new TokenResponse(memberService.login(loginRequest), "Bearer"));
     }
 
 

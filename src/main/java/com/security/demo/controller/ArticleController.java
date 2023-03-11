@@ -6,6 +6,7 @@ import com.security.demo.service.ArticleService;
 import com.security.demo.service.LikesService;
 import com.security.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -78,12 +79,8 @@ public class ArticleController {
 
     // 글수정
     @PatchMapping("/article/edit/{article_idx}")
-    @Transactional
-    Map<String, Object> articleEdit(Model model, Article article) {
-        Map<String, Object> map = new HashMap<>();
-        articleService.writeArticle(article);
-        map.put("updateChk", true);
-        return map;
+    ResponseEntity articleEdit(Model model, Article article) {
+        return ResponseEntity.ok().body(articleService.writeArticle(article));
     }
 
     // 글삭제

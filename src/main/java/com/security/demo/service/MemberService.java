@@ -9,8 +9,6 @@ import java.util.Optional;
 
 public interface MemberService {
 
-    String login(String memberid, String password);
-
     String login(LoginRequest loginRequest);
 
     PasswordEncoder passwordEncoder();
