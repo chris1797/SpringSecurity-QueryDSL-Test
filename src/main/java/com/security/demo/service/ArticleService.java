@@ -8,9 +8,9 @@ public interface ArticleService {
 
     List<Article> getAllArticle();
 
-    long writeArticle(Article article);
+    Long writeArticle(Article article);
 
-    void deleteArticle(Article article);
+    void deleteArticle(Long article_idx);
 
     Article getArticleDetail(Long article_idx);
 }

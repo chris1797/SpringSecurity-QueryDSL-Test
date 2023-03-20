@@ -16,11 +16,13 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
 
 
+    @Transactional
     @Override
-    public void deleteArticle(Article article) {
-        articleRepository.delete(article);
+    public void deleteArticle(Long article_idx) {
+        articleRepository.deleteById(article_idx);
     }
 
+    @Transactional
     @Override
     public Article getArticleDetail(Long article_idx) {
         return articleRepository.findById(article_idx).get();
@@ -31,8 +33,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
+    @Transactional
     @Override
-    public long writeArticle(Article article) {
+    public Long writeArticle(Article article) {
         return articleRepository.save(article).getArticle_idx();
     }
 

@@ -85,20 +85,14 @@ public class ArticleController {
 
     // 글삭제
     @DeleteMapping("/article/{article_idx}")
-    Map<String, Object> ArticleDelete(Model model, Article article) {
-        Map<String, Object> map = new HashMap<>();
-        articleService.deleteArticle(article);
-        map.put("updateChk", true);
-        return map;
+    void ArticleDelete(@PathVariable(name = "article_idx") Long article_idx) {
+        articleService.deleteArticle(article_idx);
     }
 
     @PostMapping("/article/like")
-    Map<String, Object> addLike(Model model,
-                                Member member,
-                                @RequestParam("article_id") Long article_id) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("addLikeChk", likeService.addLike(member, article_id));
-        return map;
+    ResponseEntity addLike(Member member,
+                           @RequestParam("article_idx") Long article_idx) {
+        return ResponseEntity.ok().body(likeService.addLike(member, article_idx));
     }
 
 }
