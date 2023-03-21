@@ -1,4 +1,4 @@
-package com.security.demo.config;
+package com.security.demo.dto;
 
 import lombok.Getter;
 import lombok.Setter;

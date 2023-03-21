@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/article")
 @RequiredArgsConstructor
 public class ArticleController {
 
@@ -23,14 +24,14 @@ public class ArticleController {
 
 
     // 글전체리스트 보기
-    @GetMapping("/article")
+    @GetMapping("/")
     String getArticleList(Model model) {
         model.addAttribute(articleService.getAllArticle());
         return "/article/articleList";
     }
 
     // 글작성폼
-    @GetMapping("/article/write")
+    @GetMapping("/write")
     String getArticleWriteForm(Model model,
                              @RequestHeader String Authentication) {
         /**
@@ -45,23 +46,22 @@ public class ArticleController {
     }
 
     // 글상세페이지
-    @GetMapping("/article/view/{article_idx}")
+    @GetMapping("/view/{article_idx}")
     String getArticleDetail(Model model,
-                          @PathVariable(name = "article_idx") Long article_idx) {
+                            @PathVariable(name = "article_idx") Long article_idx) {
         model.addAttribute("article", articleService.getArticleDetail(article_idx));
         return "/article/detailForm";
     }
 
     // 글작성
-    @PostMapping("/article")
-    @Transactional
+    @PostMapping("/")
     String ArticleWrite(Article article){
         long article_idx = articleService.writeArticle(article);
         return "redirect:/article/view?id=" + article_idx;
     }
 
     // 글수정폼
-    @GetMapping("/article/edit/{article_idx}")
+    @GetMapping("/edit/{article_idx}")
     String getArticleEditForm(Model model,
                             @RequestHeader String Authentication,
                             @PathVariable(name = "article_idx") Long article_idx) {
@@ -78,19 +78,19 @@ public class ArticleController {
     }
 
     // 글수정
-    @PatchMapping("/article/edit/{article_idx}")
-    ResponseEntity articleEdit(Model model, Article article) {
+    @PatchMapping("/edit/{article_idx}")
+    ResponseEntity<Long> articleEdit(Model model, Article article) {
         return ResponseEntity.ok().body(articleService.writeArticle(article));
     }
 
     // 글삭제
-    @DeleteMapping("/article/{article_idx}")
-    ResponseEntity ArticleDelete(@PathVariable(name = "article_idx") Long article_idx) {
-        return ResponseEntity.ok().body(articleService.deleteArticle(article_idx));
+    @DeleteMapping("/{article_idx}")
+    void articleDelete(@PathVariable(name = "article_idx") Long article_idx) {
+        articleService.deleteArticle(article_idx);
     }
 
-    @PostMapping("/article/like")
-    ResponseEntity addLike(Member member,
+    @PostMapping("/like")
+    ResponseEntity<Boolean> addLike(Member member,
                            @RequestParam("article_idx") Long article_idx) {
         return ResponseEntity.ok().body(likeService.addLike(member, article_idx));
     }

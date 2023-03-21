@@ -1,7 +1,7 @@
 package com.security.demo.controller;
 
-import com.security.demo.config.LoginRequest;
-import com.security.demo.config.TokenResponse;
+import com.security.demo.dto.LoginRequest;
+import com.security.demo.dto.TokenResponse;
 import com.security.demo.dto.MemberDTO;
 import com.security.demo.entity.Member;
 import com.security.demo.entity.Role;
@@ -9,9 +9,6 @@ import com.security.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,10 +33,8 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(LoginRequest loginRequest) {
-
         System.out.println("접속한 ID : " + loginRequest.getMemberid());
         System.out.println("접속한 Password : " + loginRequest.getPassword());
-
         return ResponseEntity.ok().body(new TokenResponse(memberService.login(loginRequest), "Bearer"));
     }
 

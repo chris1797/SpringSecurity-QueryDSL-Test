@@ -10,7 +10,7 @@ public interface ArticleService {
 
     Long writeArticle(Article article);
 
-    boolean deleteArticle(Long article_idx);
+    void deleteArticle(Long article_idx);
 
     Article getArticleDetail(Long article_idx);
 }

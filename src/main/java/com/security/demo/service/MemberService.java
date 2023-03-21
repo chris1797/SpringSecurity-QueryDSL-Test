@@ -1,6 +1,6 @@
 package com.security.demo.service;
 
-import com.security.demo.config.LoginRequest;
+import com.security.demo.dto.LoginRequest;
 import com.security.demo.dto.MemberDTO;
 import com.security.demo.entity.Member;
 import org.springframework.security.crypto.password.PasswordEncoder;

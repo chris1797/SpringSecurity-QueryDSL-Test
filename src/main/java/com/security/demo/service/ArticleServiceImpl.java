@@ -1,6 +1,7 @@
 package com.security.demo.service;
 
 import com.security.demo.entity.Article;
+import com.security.demo.mapper.ArticleMapper;
 import com.security.demo.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,17 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
 
 
-    @Transactional
     @Override
-    public boolean deleteArticle(Long article_idx) {
-       return articleRepository.deleteById(article_idx);
+    @Transactional
+    public void deleteArticle(Long article_idx) {
+        articleRepository.deleteById(article_idx);
     }
 
     @Transactional
