@@ -85,8 +85,8 @@ public class ArticleController {
 
     // 글삭제
     @DeleteMapping("/article/{article_idx}")
-    void ArticleDelete(@PathVariable(name = "article_idx") Long article_idx) {
-        articleService.deleteArticle(article_idx);
+    ResponseEntity ArticleDelete(@PathVariable(name = "article_idx") Long article_idx) {
+        return ResponseEntity.ok().body(articleService.deleteArticle(article_idx));
     }
 
     @PostMapping("/article/like")
