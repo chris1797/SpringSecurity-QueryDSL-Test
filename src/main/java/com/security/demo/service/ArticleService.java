@@ -1,6 +1,6 @@
 package com.security.demo.service;
 
-import com.security.demo.entity.Article;
+import com.security.demo.domain.Article;
 
 import java.util.List;
 

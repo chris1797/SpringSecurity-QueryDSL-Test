@@ -1,9 +1,8 @@
 package com.security.demo.service;
 
-import com.security.demo.dto.LoginRequest;
-import com.security.demo.dto.MemberDTO;
-import com.security.demo.entity.Member;
-import com.security.demo.entity.Role_withdraw;
+import com.security.demo.web.dto.LoginRequest;
+import com.security.demo.domain.Member;
+import com.security.demo.domain.Role_withdraw;
 import com.security.demo.config.JwtTokenProvider;
 import com.security.demo.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,8 +42,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member signUp(MemberDTO memberDTO) {
-        Member member2 = memberDTO.toEntity();
+    public Member signUp(Member memberDTO) {
         Member member = Member.builder()
                 .memberid(memberDTO.getMemberid())
                 .password(passwordEncoder().encode(memberDTO.getPassword()))

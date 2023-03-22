@@ -1,4 +1,4 @@
-package com.security.demo.entity;
+package com.security.demo.domain;
 
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -41,6 +41,7 @@ public class Article {
 
     @Temporal(TemporalType.DATE)
     private Date delete_date; // 삭제일
+
 
     @Builder
     public Article(String title, String content, Set<Likes> likes, Member member) throws Exception {

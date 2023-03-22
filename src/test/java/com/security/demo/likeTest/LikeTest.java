@@ -1,8 +1,8 @@
 package com.security.demo.likeTest;
 
 
-import com.security.demo.entity.Article;
-import com.security.demo.entity.Member;
+import com.security.demo.domain.Article;
+import com.security.demo.domain.Member;
 import com.security.demo.service.LikesService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

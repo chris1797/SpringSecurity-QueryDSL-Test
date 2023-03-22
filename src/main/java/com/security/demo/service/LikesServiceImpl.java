@@ -1,8 +1,8 @@
 package com.security.demo.service;
 
-import com.security.demo.entity.Article;
-import com.security.demo.entity.Likes;
-import com.security.demo.entity.Member;
+import com.security.demo.domain.Article;
+import com.security.demo.domain.Likes;
+import com.security.demo.domain.Member;
 import com.security.demo.repository.ArticleRepository;
 import com.security.demo.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;

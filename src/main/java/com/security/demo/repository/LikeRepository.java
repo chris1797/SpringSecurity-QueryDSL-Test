@@ -1,8 +1,8 @@
 package com.security.demo.repository;
 
-import com.security.demo.entity.Article;
-import com.security.demo.entity.Likes;
-import com.security.demo.entity.Member;
+import com.security.demo.domain.Article;
+import com.security.demo.domain.Likes;
+import com.security.demo.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

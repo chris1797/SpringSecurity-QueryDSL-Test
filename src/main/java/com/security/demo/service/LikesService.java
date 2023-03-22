@@ -1,6 +1,6 @@
 package com.security.demo.service;
 
-import com.security.demo.entity.Member;
+import com.security.demo.domain.Member;
 
 public interface LikesService {
 

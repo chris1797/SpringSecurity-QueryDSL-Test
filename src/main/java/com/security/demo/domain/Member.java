@@ -1,4 +1,4 @@
-package com.security.demo.entity;
+package com.security.demo.domain;
 
 import com.sun.istack.NotNull;
 import lombok.*;

@@ -1,11 +1,10 @@
-package com.security.demo.controller;
+package com.security.demo.web;
 
-import com.security.demo.dto.LoginRequest;
-import com.security.demo.dto.TokenResponse;
-import com.security.demo.dto.MemberDTO;
-import com.security.demo.entity.Member;
-import com.security.demo.entity.Role;
+import com.security.demo.domain.Member;
+import com.security.demo.domain.Role;
 import com.security.demo.service.MemberService;
+import com.security.demo.web.dto.LoginRequest;
+import com.security.demo.web.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +40,13 @@ public class MemberController {
 
     @GetMapping("/signup")
     String signupForm(Model model) {
-        model.addAttribute("member", new MemberDTO());
+        model.addAttribute("member", new Member());
 
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String signup(Model model, MemberDTO member) {
+    public String signup(Model model, Member member) {
         try {
             memberService.signUp(member);
         } catch (Exception e) {

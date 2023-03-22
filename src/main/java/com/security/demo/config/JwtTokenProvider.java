@@ -1,6 +1,6 @@
 package com.security.demo.config;
 
-import com.security.demo.entity.Member;
+import com.security.demo.domain.Member;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;

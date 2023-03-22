@@ -1,4 +1,4 @@
-package com.security.demo.entity;
+package com.security.demo.domain;
 
 public enum Role_withdraw {
 
