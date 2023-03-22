@@ -43,7 +43,7 @@ public class ArticleController {
     // 글상세페이지
     @GetMapping("/view/{article_idx}")
     public String getArticleDetail(Model model,
-                            @PathVariable(name = "article_idx") Long article_idx) {
+                                   @PathVariable(name = "article_idx") Long article_idx) {
         model.addAttribute("article", articleService.getArticleDetail(article_idx));
         return "/article/detailForm";
     }

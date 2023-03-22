@@ -10,24 +10,26 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
 
 
     @GetMapping("/login")
-    String login(Model model) {
-        model.addAttribute("member", new LoginRequest());
-        return "login";
+    public ModelAndView login() {
+        ModelAndView mv = new ModelAndView("login");
+        mv.addObject("member", new LoginRequest());
+        return mv;
     }
 
     @PostMapping("/login")
@@ -39,10 +41,11 @@ public class MemberController {
 
 
     @GetMapping("/signup")
-    String signupForm(Model model) {
-        model.addAttribute("member", new Member());
+    public ModelAndView signupForm(Model model) {
+        ModelAndView mv = new ModelAndView("signup");
+        mv.addObject("member", new Member());
 
-        return "signup";
+        return mv;
     }
 
     @PostMapping("/signup")
@@ -58,7 +61,6 @@ public class MemberController {
     }
 
     @GetMapping("/info")
-    @ResponseBody
     public ResponseEntity<Member> getUserFromToken(HttpServletRequest request) {
         String memberid = (String) request.getAttribute("memberid");
         Optional<Member> member = memberService.findByMemberid((String) request.getAttribute("memberid"));
