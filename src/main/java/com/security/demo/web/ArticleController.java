@@ -64,9 +64,7 @@ public class ArticleController {
          * Authentication의 Role 권한이 외부사용자이면 list 페이지로 이동
          */
         String[] role = Authentication.split(" ");
-        if(role[0] == null || role[0] == "") {
-            return "/article/articleList";
-        }
+        if(role[0] == null || role[0] == "") return "/article/articleList";
         model.addAttribute("article", articleService.getArticleDetail(article_idx));
 
         return "/article/editForm";

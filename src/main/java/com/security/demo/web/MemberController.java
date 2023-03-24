@@ -36,9 +36,11 @@ public class MemberController {
     public ResponseEntity<TokenResponse> login(LoginRequest loginRequest) {
         System.out.println("접속한 ID : " + loginRequest.getMemberid());
         System.out.println("접속한 Password : " + loginRequest.getPassword());
-        return ResponseEntity.ok().body(new TokenResponse(memberService.login(loginRequest), "Bearer"));
-    }
 
+        TokenResponse token = new TokenResponse(memberService.login(loginRequest), "Bearer");
+
+        return ResponseEntity.ok().body(token);
+    }
 
     @GetMapping("/signup")
     public ModelAndView signupForm(Model model) {
