@@ -2,14 +2,14 @@ package com.security.demo.domain;
 
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
-@RequiredArgsConstructor
+@Component
 @NoArgsConstructor
-@Table(name = "Member")
 public class Member {
 
     @Id
