@@ -51,8 +51,7 @@ public class ArticleController {
     // 글작성
     @PostMapping("/")
     public String ArticleWrite(Article article){
-        long article_idx = articleService.writeArticle(article);
-        return "redirect:/article/view?id=" + article_idx;
+        return "redirect:/article/view?id=" + articleService.writeArticle(article);
     }
 
     // 글수정폼
