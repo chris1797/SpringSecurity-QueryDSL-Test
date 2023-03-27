@@ -22,7 +22,7 @@ public class SecurityConfig {
         // /login, /signup 페이지는 모두 허용, 다른 페이지는 인증된 사용자만 허용
         http.authorizeRequests()
                 .antMatchers("/login", "/signup").permitAll()
-                .antMatchers("/board/write", "/board/edit", "/board/delete")
+                .antMatchers("/article/write", "/article/edit", "/article/delete")
                     .hasAnyRole("REALTOR", "LESSOR", "LESSEE")
                 .anyRequest().authenticated();
 
