@@ -27,11 +27,12 @@ public class JwtTokenProvider {
                             Member member) {
         this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
         this.validityInMilliseconds = validityInMilliseconds;
-        this.token = createToken(member);
+        this.token = createTokenByRole(member);
+//        this.token = createTokenByJwt(member);
     }
 
-    //토큰생성 (username, secretKey 사용)
-    private String createToken(String userName, String secretKey, Long expiredMs) {
+    // 토큰생성 (username, secretKey 사용)
+    private String createTokenByJwt(String userName, String secretKey, Long expiredMs) {
         Claims claims = Jwts.claims();
         claims.put("userName", userName);
 
@@ -43,12 +44,12 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(System.currentTimeMillis() + expiredMs)) // 토큰 만료시간 설정
 //              .signWith(SignatureAlgorithm.HS256, secretKey) // deprecated
                 .signWith(key, SignatureAlgorithm.HS256)
-                // key를 받아 HS256(서명 알고리즘)으로 서명한다는 의미 (Apple은 RS256 알고리즘으로 서명해야 한다.)
+                // key를 받아 HS256(서명 알고리즘)으로 서명한다는 의미 (Apple은 RS256 알고리즘으로 서명해야 함)
                 .compact();
     }
 
-    //토큰생성 (인증된 member 인스턴스를 받아 토큰 생성)
-    private String createToken(Member member) {
+    // 토큰생성 (인증된 member 인스턴스를 받아 토큰 생성)
+    private String createTokenByRole(Member member) {
         // ex) LESSOR 1
         return member.getAccount_type() + " " + member.getMember_idx();
     }
