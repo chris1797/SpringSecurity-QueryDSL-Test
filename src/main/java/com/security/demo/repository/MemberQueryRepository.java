@@ -15,6 +15,7 @@ public class MemberQueryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
+
     public List<Member> findByAccountId(String accountId) {
         return jpaQueryFactory.selectFrom(member)
                 .where(member.accountId.eq(accountId))
