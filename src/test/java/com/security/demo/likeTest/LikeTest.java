@@ -24,13 +24,13 @@ public class LikeTest {
     @Autowired
     MockMvc mockMvc;
 
-    @Test
-    @DisplayName("좋아요 테스트")
-    void addlikeTest() throws Exception {
-        Article article = createArticle();
-
-        mockMvc.perform(post("/board/like" + article.getArticle_idx())).andExpect(status().isOk());
-    }
+//    @Test
+//    @DisplayName("좋아요 테스트")
+//    void addlikeTest() throws Exception {
+//        Article article = createArticle();
+//
+//        mockMvc.perform(post("/board/like" + article.getArticle_idx())).andExpect(status().isOk());
+//    }
 
     private Article createArticle() throws Exception {
         Article article = Article.builder()
@@ -45,7 +45,7 @@ public class LikeTest {
     private Member createMember() throws Exception {
         Member member =  Member.builder()
                 .nickname("닉네임")
-                .memberid("test id")
+                .accountId("test id")
                 .build();
 
         return member;

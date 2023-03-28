@@ -8,14 +8,12 @@ import com.security.demo.web.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -34,7 +32,7 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(LoginRequest loginRequest) {
-        System.out.println("접속한 ID : " + loginRequest.getMemberid());
+        System.out.println("접속한 ID : " + loginRequest.getAccountId());
         System.out.println("접속한 Password : " + loginRequest.getPassword());
 
         TokenResponse token = new TokenResponse(memberService.login(loginRequest), "Bearer");
@@ -43,15 +41,12 @@ public class MemberController {
     }
 
     @GetMapping("/signup")
-    public ModelAndView signupForm(Model model) {
-        ModelAndView mv = new ModelAndView("signup");
-        mv.addObject("member", new Member());
-
-        return mv;
+    public String signupForm() {
+        return "signup";
     }
 
     @PostMapping("/signup")
-    public String signup(Model model, Member member) {
+    public String signup(Member member) {
         try {
             memberService.signUp(member);
         } catch (Exception e) {
@@ -64,17 +59,17 @@ public class MemberController {
 
     @GetMapping("/info")
     public ResponseEntity<Member> getUserFromToken(HttpServletRequest request) {
-        String memberid = (String) request.getAttribute("memberid");
-        Optional<Member> member = memberService.findByMemberid((String) request.getAttribute("memberid"));
-        return ResponseEntity.ok().body(member.get());
+        String accountId = (String) request.getAttribute("accountId");
+        Member member = memberService.findByAccountId(accountId);
+        return ResponseEntity.ok().body(member);
     }
 
     @ModelAttribute("roles")
     public Map<String, Role> roles() {
         Map<String, Role> map = new LinkedHashMap<>();
-        map.put("임차인", Role.ROLE_LESSEE);
-        map.put("임대인", Role.ROLE_LESSOR);
-        map.put("공인중개사", Role.ROLE_REALTOR);
+        map.put("임차인", Role.LESSEE);
+        map.put("임대인", Role.LESSOR);
+        map.put("공인중개사", Role.REALTOR);
         return map;
     }
 }

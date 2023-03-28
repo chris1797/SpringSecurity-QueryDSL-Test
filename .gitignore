@@ -40,6 +40,9 @@ gen
 **/build/
 !src/**/build/
 
+# QueryDSL
+generated
+
 # Ignore Gradle GUI config
 gradle-app.setting
 

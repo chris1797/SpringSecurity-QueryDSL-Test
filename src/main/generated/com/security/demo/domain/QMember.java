@@ -21,9 +21,9 @@ public class QMember extends EntityPathBase<Member> {
 
     public final EnumPath<Role> account_type = createEnum("account_type", Role.class);
 
-    public final NumberPath<Long> member_idx = createNumber("member_idx", Long.class);
+    public final StringPath accountId = createString("accountId");
 
-    public final StringPath memberid = createString("memberid");
+    public final NumberPath<Long> member_idx = createNumber("member_idx", Long.class);
 
     public final StringPath nickname = createString("nickname");
 

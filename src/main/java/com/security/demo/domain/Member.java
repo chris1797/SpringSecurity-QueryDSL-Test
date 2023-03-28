@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Component
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id
@@ -22,7 +22,7 @@ public class Member {
 
     @NotNull
     @Column(nullable = false, name = "account_id")
-    private String memberid;
+    private String accountId;
 
     @NotNull
     private String password;
@@ -35,11 +35,8 @@ public class Member {
 
 
     @Builder
-    public Member(String nickname, String memberid, String password, Role account_type, Role_withdraw quit) {
-        /**
-         * Member 엔티티의 Not null인 컬럼들이 null일 예외 처리
-         */
-        this.memberid = memberid;
+    public Member(String nickname, String accountId, String password, Role account_type, Role_withdraw quit) {
+        this.accountId = accountId;
         this.nickname = nickname;
         this.password = password;
         this.account_type = account_type;

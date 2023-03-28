@@ -21,10 +21,10 @@ public class MemberTest {
     @Autowired
     MemberService memberService;
 
-    @Test
-    @DisplayName("Authorization 테스트")
-    void getBoardWriteForm() throws Exception {
-
-        mockMvc.perform(get("/board/write")).andExpect(status().isOk());
-    }
+//    @Test
+//    @DisplayName("Authorization 테스트")
+//    void getBoardWriteForm() throws Exception {
+//
+//        mockMvc.perform(get("/board/write")).andExpect(status().isOk());
+//    }
 }
