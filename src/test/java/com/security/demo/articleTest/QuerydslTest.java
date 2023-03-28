@@ -1,9 +1,6 @@
 package com.security.demo.articleTest;
 
 import com.security.demo.domain.Member;
-import com.security.demo.domain.Role;
-import com.security.demo.domain.Role_withdraw;
-import com.security.demo.mapper.MemberRepositorySupport;
 import com.security.demo.repository.MemberQueryRepository;
 import com.security.demo.repository.MemberRepository;
 import org.junit.After;
