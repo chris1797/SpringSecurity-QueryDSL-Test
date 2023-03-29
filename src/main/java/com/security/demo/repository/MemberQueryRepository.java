@@ -2,6 +2,7 @@ package com.security.demo.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.security.demo.domain.Member;
+import com.security.demo.domain.QMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +20,23 @@ public class MemberQueryRepository {
         return jpaQueryFactory.selectFrom(member)
                 .where(member.accountId.eq(accountId))
                 .fetch();
+    }
+
+    public void updateNickname(String nickName) {
+        jpaQueryFactory.update(member).where(member.nickname.eq("chris"))
+                .set(member.nickname, nickName)
+                .execute();
+    }
+
+    public void deleteByMember_idx(Long member_idx) {
+        jpaQueryFactory.delete(member)
+                .where(member.member_idx.eq(member_idx))
+                .execute();
+    }
+
+    public void deleteByMember(Member memberDto) {
+        memberDto.getMember_idx();
+        QMember qMember = QMember.member;
+        jpaQueryFactory.delete(qMember).execute();
     }
 }
