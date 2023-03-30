@@ -1,6 +1,7 @@
 package com.security.demo.service;
 
 import com.security.demo.domain.Article;
+import com.security.demo.repository.ArticleQueryRepository;
 import com.security.demo.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
+    private final ArticleQueryRepository articleQueryRepository;
 
 
     @Override
@@ -21,10 +23,12 @@ public class ArticleServiceImpl implements ArticleService {
         articleRepository.deleteById(article_idx);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public Article getArticleDetail(Long article_idx) {
-        return articleRepository.findById(article_idx).get();
+        Article article = articleRepository.findById(article_idx)
+                .orElseThrow(() -> new NullPointerException("This article does not exist."));
+        return article;
     }
 
     @Override
@@ -32,8 +36,8 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
-    @Transactional
     @Override
+    @Transactional
     public Long writeArticle(Article article) {
         return articleRepository.save(article).getArticle_idx();
     }
