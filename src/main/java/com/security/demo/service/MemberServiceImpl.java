@@ -44,6 +44,7 @@ public class MemberServiceImpl implements MemberService {
     public Member signUp(Member memberDTO) {
         Member member = Member.builder()
                 .accountId(memberDTO.getAccountId())
+                // password encode
                 .password(passwordEncoder().encode(memberDTO.getPassword()))
                 .nickname(memberDTO.getNickname())
                 .account_type(memberDTO.getAccount_type())

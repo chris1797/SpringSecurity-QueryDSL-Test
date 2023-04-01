@@ -46,9 +46,9 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public String signup(Member member) {
+    public String signup(Member memberDTO) {
         try {
-            memberService.signUp(member);
+            memberService.signUp(memberDTO);
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:/signup";
@@ -60,8 +60,7 @@ public class MemberController {
     @GetMapping("/info")
     public ResponseEntity<Member> getUserFromToken(HttpServletRequest request) {
         String accountId = (String) request.getAttribute("accountId");
-        Member member = memberService.findByAccountId(accountId);
-        return ResponseEntity.ok().body(member);
+        return ResponseEntity.ok().body(memberService.findByAccountId(accountId));
     }
 
     @ModelAttribute("roles")
