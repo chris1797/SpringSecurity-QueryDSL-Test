@@ -18,28 +18,24 @@ public class LikesServiceImpl implements LikesService{
     private final LikeRepository likeRepository;
     private final ArticleRepository articleRepository;
 
-
-    /**
-     * article_id에 해당하는 글에 user의 좋아요 추가
-     */
     @Transactional
     @Override
     public boolean addLike(Member member, Long article_id) {
-        Optional<Article> article = articleRepository.findById(article_id);
+        Article article = articleRepository.findById(article_id)
+                .orElseThrow(() -> new NullPointerException("This article does not exist."));
 
-        if(!article.isPresent()) throw new IllegalArgumentException();
-        if(isNotAlreadyLike(member, article.get())) {
-            likeRepository.save(new Likes(article.get(), member));
+        if(isNotAlreadyLike(member, article)) {
+            likeRepository.save(new Likes(article, member));
             return true;
         }
         return false;
     }
 
     /**
-     * user의 해당 article 좋아요 여부 체크
+     * 유저의 해당 article 좋아요 여부 체크
      */
-    @Transactional
-    private boolean isNotAlreadyLike(Member member, Article article) {
+    @Override
+    public boolean isNotAlreadyLike(Member member, Article article) {
         return likeRepository.findByMemberAndArticle(member, article).isPresent();
     }
 }

@@ -29,6 +29,8 @@ public class Article {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
+    private int viewCnt;
+
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     Set<Likes> likes = new HashSet<>(); // 전체글 리스트에서 좋아요 수를 나타내기 위한 양방향 관계
 
