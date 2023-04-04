@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Value("${jwt.secret}")
     private String secretKey;
-    private Long expiredMs = 1000 * 60 * 60L;
+    private final Long expiredMs = 1000 * 60 * 60L;
 
 
     @Override
@@ -35,9 +35,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member findByAccountId(String account_id) {
-        Member member = memberRepository.findByAccountId(account_id)
+        return memberRepository.findByAccountId(account_id)
                 .orElseThrow(() -> new NullPointerException("This account_id is not exist."));
-        return member;
     }
 
     @Override
@@ -49,7 +48,6 @@ public class MemberServiceImpl implements MemberService {
                 .nickname(memberDTO.getNickname())
                 .account_type(memberDTO.getAccount_type())
                 .build();
-
         return memberRepository.save(member);
     }
 

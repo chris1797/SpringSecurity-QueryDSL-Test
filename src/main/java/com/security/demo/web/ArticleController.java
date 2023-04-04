@@ -17,7 +17,6 @@ public class ArticleController {
     private final ArticleService articleService;
     private final LikesService likeService;
 
-
     // 글전체리스트 보기
     @GetMapping("/")
     public String getArticleList(Model model) {
@@ -81,6 +80,7 @@ public class ArticleController {
         articleService.deleteArticle(article_idx);
     }
 
+    // 좋아요
     @PostMapping("/like")
     public ResponseEntity<Boolean> addLike(Member member,
                            @RequestParam("article_idx") Long article_idx) {
