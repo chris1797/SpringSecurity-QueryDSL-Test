@@ -34,7 +34,7 @@ public class QuerydslTest {
     }
 
     @Test
-    @DisplayName("Querydsl 테스트")
+    @DisplayName("회원가입 테스트")
     public void querydslTest() {
         // given
         Member member = Member.builder()
