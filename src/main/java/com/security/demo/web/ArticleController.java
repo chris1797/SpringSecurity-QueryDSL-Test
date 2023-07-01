@@ -2,8 +2,6 @@ package com.security.demo.web;
 
 import com.security.demo.domain.Article;
 import com.security.demo.domain.Member;
-import com.security.demo.service.ArticleService;
-import com.security.demo.service.LikesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;

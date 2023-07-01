@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 @RestController
@@ -32,29 +33,17 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(LoginRequest loginRequest) {
-        System.out.println("접속한 ID : " + loginRequest.getAccountId());
-        System.out.println("접속한 Password : " + loginRequest.getPassword());
+        log.warn("접속한 ID : {}", loginRequest.getAccountId());
+        log.warn("접속한 Password : {}", loginRequest.getPassword());
 
         TokenResponse token = new TokenResponse(memberService.login(loginRequest), "Bearer");
 
         return ResponseEntity.ok().body(token);
     }
 
-    @GetMapping("/signup")
-    public String signupForm() {
-        return "signup";
-    }
-
     @PostMapping("/signup")
     public String signup(Member memberDTO) {
-        try {
-            memberService.signUp(memberDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "redirect:/signup";
-        }
-
-        return "redirect:/login";
+        return Objects.isNull(memberService.signUp(memberDTO).getMember_idx()) ? "redirect:/signup" : "redirect:/main";
     }
 
     @GetMapping("/info")

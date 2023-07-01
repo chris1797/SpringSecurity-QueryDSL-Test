@@ -3,7 +3,6 @@ package com.security.demo.likeTest;
 
 import com.security.demo.domain.Article;
 import com.security.demo.domain.Member;
-import com.security.demo.service.LikesService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
