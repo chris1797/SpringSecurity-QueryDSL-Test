@@ -1,4 +1,4 @@
-package com.security.demo.config;
+package com.security.demo.common.config;
 
 import com.security.demo.domain.Member;
 import io.jsonwebtoken.*;

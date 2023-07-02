@@ -1,4 +1,4 @@
-package com.security.demo.domain;
+package com.security.demo.common.role;
 
 public enum Role {
 
@@ -9,9 +9,6 @@ public enum Role {
     LESSOR("임대인"),
     LESSEE("임차인");
 
-    private String roleCode;
-
     Role (String roleCode) {
-        this.roleCode = roleCode;
     }
 }

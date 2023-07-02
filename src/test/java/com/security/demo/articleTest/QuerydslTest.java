@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.security.demo.domain.Role.REALTOR;
-import static com.security.demo.domain.Role_withdraw.ACTIVE;
+import static com.security.demo.common.role.Role.REALTOR;
+import static com.security.demo.common.role.Role_withdraw.ACTIVE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)

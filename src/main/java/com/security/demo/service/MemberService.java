@@ -2,7 +2,7 @@ package com.security.demo.service;
 
 import com.security.demo.web.dto.LoginRequest;
 import com.security.demo.domain.Member;
-import com.security.demo.config.JwtTokenProvider;
+import com.security.demo.common.config.JwtTokenProvider;
 import com.security.demo.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

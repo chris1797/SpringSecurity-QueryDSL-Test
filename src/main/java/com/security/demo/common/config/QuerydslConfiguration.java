@@ -1,4 +1,4 @@
-package com.security.demo.config;
+package com.security.demo.common.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Bean;

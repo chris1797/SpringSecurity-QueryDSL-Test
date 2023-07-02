@@ -1,12 +1,12 @@
 package com.security.demo.domain;
 
+import com.security.demo.common.role.Role;
+import com.security.demo.common.role.Role_withdraw;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Entity

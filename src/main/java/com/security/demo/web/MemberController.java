@@ -1,7 +1,7 @@
 package com.security.demo.web;
 
 import com.security.demo.domain.Member;
-import com.security.demo.domain.Role;
+import com.security.demo.common.role.Role;
 import com.security.demo.service.MemberService;
 import com.security.demo.web.dto.LoginRequest;
 import com.security.demo.web.dto.TokenResponse;
