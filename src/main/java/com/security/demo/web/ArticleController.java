@@ -5,10 +5,12 @@ import com.security.demo.domain.Member;
 import com.security.demo.service.ArticleService;
 import com.security.demo.service.LikesService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/article")
 @RequiredArgsConstructor
