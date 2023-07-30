@@ -1,8 +1,11 @@
 package com.security.demo.articleTest;
 
+import com.security.demo.common.role.Role;
 import com.security.demo.domain.Member;
 import com.security.demo.repository.MemberQueryRepository;
 import com.security.demo.repository.MemberRepository;
+import com.security.demo.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -16,12 +19,17 @@ import java.util.List;
 
 import static com.security.demo.common.role.Role.REALTOR;
 import static com.security.demo.common.role.Role_withdraw.ACTIVE;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class QuerydslTest {
+
+    @Autowired
+    MemberService memberService;
 
     @Autowired
     private MemberRepository memberRepository;
@@ -36,7 +44,7 @@ public class QuerydslTest {
     }
 
     @Test
-    @DisplayName("회원가입 테스트")
+    @DisplayName("회원가입 테스트1")
     public void querydslTest() {
         // given
         Member member = Member.builder()
@@ -46,7 +54,6 @@ public class QuerydslTest {
                 .password("123")
                 .quit(ACTIVE)
                 .build();
-
         memberRepository.save(member);
 
         // when
@@ -55,5 +62,21 @@ public class QuerydslTest {
         // then
         assertEquals(1, result.size());
         assertEquals(result.get(0).getNickname(), "chris");
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("회원가입 테스트2")
+    public void signUpTest() {
+        Member member =  Member.builder()
+                .nickname("test nickName")
+                .accountId("test id")
+                .password("1234")
+                .account_type(Role.LESSEE)
+                .build();
+        Member resultMember = memberService.signUp(member);
+        log.warn("result Member_idx :::: {}", resultMember.getMember_idx());
+
+        assertEquals(resultMember.getNickname(), "test nickName");
     }
 }
