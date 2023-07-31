@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 
 
 /**
@@ -35,21 +34,25 @@ import static org.mockito.ArgumentMatchers.any;
 
 @Slf4j
 @SpringBootTest
-//@DataJpaTest
 @RunWith(SpringRunner.class)
 public class MemberTest {
 
     @Autowired
-    ArticleService articleService;
-
-    @Mock
-    ArticleRepository articleRepository;
-
+    MemberService memberService;
 
     @Test
-    @DisplayName("게시클 조회 테스트")
-    public void findArticle() {
-        List<Article> articleList = articleRepository.findAll();
-        assertThat(articleList.get(0).getContent()).isEqualTo("test content");
+    @Transactional
+    @DisplayName("회원가입 테스트")
+    public void signUpTest() {
+        Member member =  Member.builder()
+                .nickname("test nickName")
+                .accountId("test id")
+                .password("1234")
+                .account_type(Role.LESSEE)
+                .build();
+        Member resultMember = memberService.signUp(member);
+        log.warn("result Member_idx :::: {}", resultMember.getMember_idx());
+
+        assertEquals(resultMember.getNickname(), "test nickName");
     }
 }

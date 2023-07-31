@@ -3,6 +3,7 @@ package com.security.demo.domain;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Getter
 @Entity
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Article {
 
     @Id
