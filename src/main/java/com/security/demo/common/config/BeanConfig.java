@@ -8,8 +8,9 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration(value = "config")
-@DependsOn(value = {"const"})
+//@Configuration(value = "config")
+//@DependsOn(value = {"const"})
+@Configuration
 public class BeanConfig {
 
     @Bean

@@ -15,10 +15,10 @@ public class MemberQueryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
-    public List<Member> findByAccountId(String accountId) {
+    public Member findByAccountId(String accountId) {
         return jpaQueryFactory.selectFrom(member)
                 .where(member.accountId.eq(accountId))
-                .fetch();
+                .fetchOne();
     }
 
     public void updateNickname(String nickName) {

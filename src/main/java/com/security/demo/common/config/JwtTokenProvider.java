@@ -44,7 +44,7 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(System.currentTimeMillis() + expiredMs)) // 토큰 만료시간 설정
 //              .signWith(SignatureAlgorithm.HS256, secretKey) // deprecated
                 .signWith(key, SignatureAlgorithm.HS256)
-                // key를 받아 HS256(서명 알고리즘)으로 서명한다는 의미 (Apple은 RS256 알고리즘으로 서명해야 함)
+                // key를 받아 HS256(서명 알고리즘)으로 서명한다는 의미 (IOS는 RS256 알고리즘 사용)
                 .compact();
     }
 

@@ -1,31 +1,30 @@
 package com.security.demo.memberTest;
 
+import com.security.demo.common.config.JwtTokenProvider;
 import com.security.demo.common.role.Role;
-import com.security.demo.domain.Article;
 import com.security.demo.domain.Member;
-import com.security.demo.repository.ArticleRepository;
-import com.security.demo.service.ArticleService;
+import com.security.demo.repository.MemberQueryRepository;
+import com.security.demo.repository.MemberRepository;
 import com.security.demo.service.MemberService;
+import com.security.demo.web.dto.LoginRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import static org.assertj.core.api.Assertions.assertThat;
-
 
 import java.util.List;
-import java.util.Objects;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 /**
@@ -37,8 +36,20 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 public class MemberTest {
 
-    @Autowired
+    @InjectMocks
     MemberService memberService;
+
+    @Mock
+    PasswordEncoder passwordEncoder;
+
+    @Mock
+    MemberRepository memberRepository;
+
+    @Mock
+    MemberQueryRepository queryRepository;
+
+    @Mock
+    JwtTokenProvider jwtTokenProvider;
 
     @Test
     @Transactional
@@ -54,5 +65,29 @@ public class MemberTest {
         log.warn("result Member_idx :::: {}", resultMember.getMember_idx());
 
         assertEquals(resultMember.getNickname(), "test nickName");
+    }
+
+    @Test
+    @DisplayName("ID로 계정 찾기 테스트")
+    public void getUserByIdTest() {
+
+        String account_id = "chris";
+
+        Member member = memberService.findByAccountId(account_id);
+        assertEquals(member.getAccountId(), "chris");
+    }
+
+    @Test
+    @DisplayName("로그인 테스트")
+    public void loginTest() {
+        String userId = "chris";
+        String userPwd = "123";
+
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setAccountId(userId);
+        loginRequest.setPassword(userPwd);
+
+        String result = memberService.login(loginRequest);
+        assertThat(result, is("123"));
     }
 }
