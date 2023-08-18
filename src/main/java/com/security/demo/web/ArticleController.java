@@ -52,7 +52,7 @@ public class ArticleController {
     // 글작성
     @PostMapping("/")
     public String ArticleWrite(Article article){
-        return "redirect:/article/view?id=" + articleService.writeArticle(article);
+        return "redirect:/article/view?id=" + articleService.save(article);
     }
 
     // 글수정폼
@@ -73,7 +73,7 @@ public class ArticleController {
     // 글수정
     @PatchMapping("/edit/{article_idx}")
     public ResponseEntity<Long> articleEdit(Model model, Article article) {
-        return ResponseEntity.ok().body(articleService.writeArticle(article));
+        return ResponseEntity.ok().body(articleService.save(article));
     }
 
     // 글삭제

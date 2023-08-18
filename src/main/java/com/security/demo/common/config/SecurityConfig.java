@@ -19,7 +19,7 @@ public class SecurityConfig {
 
         http.csrf().disable();
         // 권한에 따라 허용하는 url 설정
-        // /login, /signup 페이지는 모두 허용, 다른 페이지는 인증된 사용자만 허용
+        // /login, /signup 페이지는 모두 허용, 다른 페이지는 해당 Role을 가진, 인증된 사용자만 허용
         http.authorizeRequests()
                 .antMatchers("/login", "/signup").permitAll()
                 .antMatchers("/article/write", "/article/edit", "/article/delete")

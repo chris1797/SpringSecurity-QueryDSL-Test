@@ -35,7 +35,7 @@ public class ArticleService {
     }
 
     @Transactional
-    public Long writeArticle(Article article) {
+    public Long save(Article article) {
         return articleRepository.save(article).getArticle_idx();
     }
 
