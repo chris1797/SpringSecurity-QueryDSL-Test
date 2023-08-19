@@ -63,4 +63,12 @@ public class ArticleTest {
 
 //        assertEquals(list.get(0).getTitle(), "test");
     }
+
+    @Test
+    @DisplayName("게시글 상세 조회 테스트")
+    public void getArticleDetailTest() {
+        Article result = articleService.getArticleDetail(3L);
+
+        assertThat(result.getArticle_idx()).isEqualTo(3L);
+    }
 }
