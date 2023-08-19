@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +21,7 @@ public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long article_idx;
+    private Long articleNo;
 
     @Column(nullable = false, length = 50)
     private String title;
@@ -38,19 +40,19 @@ public class Article {
 
     @NotNull
     @Temporal(TemporalType.DATE)
-    private Date write_date; // 작성일
+    private LocalDateTime regDate; // 작성일
 
     @Temporal(TemporalType.DATE)
-    private Date last_date; // 수정일
+    private Date uptDate; // 수정일
 
     @Temporal(TemporalType.DATE)
-    private Date delete_date; // 삭제일
+    private Date delDate; // 삭제일
 
 
     @Builder
-    public Article(String title, String content, Set<Likes> likes, Member member) throws Exception {
+    public Article(String title, String content, Set<Likes> likes, LocalDateTime regDate, Member member) throws Exception {
         /**
-         * Board 엔티티의 Not null인 컬럼들이 null일 경우 예외처리
+         * Article 엔티티의 Not null인 컬럼들이 null일 경우 예외처리
          */
         if(title.isEmpty()) throw new Exception("Title is null");
         if(content.isEmpty()) throw new Exception("Content is null");
@@ -60,5 +62,6 @@ public class Article {
         this.likes = likes;
         this.content = content;
         this.member = member;
+        this.regDate = regDate;
     }
 }

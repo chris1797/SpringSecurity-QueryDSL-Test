@@ -6,7 +6,6 @@ import com.security.demo.service.ArticleService;
 import com.security.demo.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -18,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -69,6 +66,12 @@ public class ArticleTest {
     public void getArticleDetailTest() {
         Article result = articleService.getArticleDetail(3L);
 
-        assertThat(result.getArticle_idx()).isEqualTo(3L);
+        assertThat(result.getArticleNo()).isEqualTo(3L);
+    }
+
+    @Test
+    @DisplayName("게시글 삭제 테스트")
+    public void removeArticleTest() {
+
     }
 }
