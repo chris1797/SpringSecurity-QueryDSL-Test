@@ -15,15 +15,15 @@ public class ArticleQueryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
-    public List<Article> findByArticle_idx(Long article_idx) {
+    public List<Article> findByArticle_idx(Long articleNo) {
         return jpaQueryFactory.selectFrom(article)
-                .where(article.article_idx.eq(article_idx))
+                .where(article.articleNo.eq(articleNo))
                 .fetch();
     }
 
-    public void deleteByArticle_idx(Long article_idx) {
-        jpaQueryFactory.delete(article)
-                .where(article.article_idx.eq(article_idx))
+    public Long deleteByArticleNo(Long articleNo) {
+        return jpaQueryFactory.delete(article)
+                .where(article.articleNo.eq(articleNo))
                 .execute();
     }
 }

@@ -1,6 +1,7 @@
 package com.security.demo.articleTest;
 
 import com.security.demo.domain.Article;
+import com.security.demo.repository.ArticleQueryRepository;
 import com.security.demo.repository.ArticleRepository;
 import com.security.demo.service.ArticleService;
 import com.security.demo.service.MemberService;
@@ -32,6 +33,9 @@ public class ArticleTest {
 
     @Mock
     private ArticleRepository articleRepository;
+
+    @Mock
+    private ArticleQueryRepository queryRepository;
 
 
 //    @After
@@ -70,8 +74,12 @@ public class ArticleTest {
     }
 
     @Test
+    @Transactional(rollbackFor = Exception.class)
     @DisplayName("게시글 삭제 테스트")
     public void removeArticleTest() {
 
+        Long result = queryRepository.deleteByArticleNo(3L);
+
+        assertThat(result).isEqualTo(1);
     }
 }
