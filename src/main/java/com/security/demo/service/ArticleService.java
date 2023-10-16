@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,16 +20,22 @@ public class ArticleService {
 
 
     @Transactional
-    public void deleteArticle(Long article_idx) {
-        articleRepository.deleteById(article_idx);
+    public Boolean deleteArticle(Long articleNo) {
+        Article article = articleRepository.findById(articleNo).orElseThrow(() -> new NullPointerException("articleNo is not exist."));
+        if (Objects.isNull(article)) return false;
+
+        articleRepository.deleteById(articleNo);
+        return true;
     }
 
 
     @Transactional(readOnly = true)
-    public Article getArticleDetail(Long article_idx) {
-        Article article = articleRepository.findById(article_idx)
+    public Article getArticleDetail(Long article_idx, String authentication) throws Exception {
+        String[] role = authentication.split(" ");
+        if (role[0] == null || role[0].isEmpty()) throw new Exception("No authentication.");
+
+        return articleRepository.findById(article_idx)
                 .orElseThrow(() -> new NullPointerException("This article does not exist."));
-        return article;
     }
 
     public List<Article> getAllArticle() {
@@ -35,8 +43,8 @@ public class ArticleService {
     }
 
     @Transactional
-    public Long save(Article article) {
-        return articleRepository.save(article).getArticleNo();
+    public Boolean save(Article article) {
+        return articleRepository.save(article).getArticleNo() > 0;
     }
 
 

@@ -21,7 +21,7 @@ public class ArticleRepositorySupport extends QuerydslRepositorySupport {
 
     public List<Article> findByArticle_Idx(Long article_idx) {
         return queryFactory.selectFrom(article)
-                .where(article.article_idx.eq(article_idx))
+                .where(article.articleNo.eq(article_idx))
                 .fetch();
     }
 

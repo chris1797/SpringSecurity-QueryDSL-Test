@@ -51,9 +51,9 @@ public class ArticleTest {
                 .content("test content")
                 .member(memberService.findByAccountId("chris"))
                 .build();
-        Long result = articleService.save(article);
+        Boolean result = articleService.save(article);
 
-        assertThat(result).isEqualTo(6);
+        assertThat(result).isTrue();
     }
 
     @Test
