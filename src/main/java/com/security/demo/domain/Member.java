@@ -17,14 +17,14 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
-    private Long member_idx;
+    private Long memberNo;
 
     @Column(nullable = false)
     private String nickname;
 
     @NotNull
-    @Column(nullable = false, name = "account_id")
-    private String accountId;
+    @Column(nullable = false, name = "account_no")
+    private String accountNo;
 
     @NotNull
     private String password;
@@ -37,8 +37,8 @@ public class Member {
 
 
     @Builder
-    public Member(String nickname, String accountId, String password, Role account_type, Role_withdraw quit) {
-        this.accountId = accountId;
+    public Member(String nickname, String accountNo, String password, Role account_type, Role_withdraw quit) {
+        this.accountNo = accountNo;
         this.nickname = nickname;
         this.password = password;
         this.account_type = account_type;

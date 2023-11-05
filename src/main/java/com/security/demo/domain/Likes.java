@@ -14,14 +14,14 @@ public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long likes_id;
+    private Long likesNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_idx", nullable = false)
+    @JoinColumn(name = "article_no", nullable = false)
     private Article article;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_idx", nullable = false)
+    @JoinColumn(name = "member_no", nullable = false)
     private Member member;
 
 

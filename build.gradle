@@ -46,7 +46,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
-	annotationProcessor("org.projectlombok:lombok") // 애노테이션이 선언된 클래스를 AnnotationProcessor 에서 처리하려면 다음과 같이 선언해야 한다.
+	annotationProcessor("org.projectlombok:lombok") // 어노테이션이 선언된 클래스를 AnnotationProcessor 에서 처리하려면 다음과 같이 선언해야 한다.
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.batch:spring-batch-test'

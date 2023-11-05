@@ -1,4 +1,4 @@
-package com.security.demo.mapper;
+package com.security.demo.queryDsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.security.demo.domain.Member;
@@ -23,9 +23,9 @@ public class MemberRepositorySupport extends QuerydslRepositorySupport {
         this.queryFactory = queryFactory;
     }
 
-    public List<Member> findByAccountId(String accountId) {
+    public List<Member> findByAccountId(String accountNo) {
         return queryFactory.selectFrom(member)
-                .where(member.accountId.eq(accountId))
+                .where(member.accountNo.eq(accountNo))
                 .fetch();
     }
 

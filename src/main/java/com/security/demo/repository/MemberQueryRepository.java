@@ -17,7 +17,7 @@ public class MemberQueryRepository {
 
     public Member findByAccountId(String accountId) {
         return jpaQueryFactory.selectFrom(member)
-                .where(member.accountId.eq(accountId))
+                .where(member.accountNo.eq(accountId))
                 .fetchOne();
     }
 
@@ -27,9 +27,9 @@ public class MemberQueryRepository {
                 .execute();
     }
 
-    public void deleteByMember_idx(Long member_idx) {
+    public void deleteByMember_idx(Long memberNo) {
         jpaQueryFactory.delete(member)
-                .where(member.member_idx.eq(member_idx))
+                .where(member.memberNo.eq(memberNo))
                 .execute();
     }
 }

@@ -1,4 +1,4 @@
-package com.security.demo.mapper;
+package com.security.demo.queryDsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.security.demo.domain.Article;

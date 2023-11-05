@@ -10,8 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class LikesService {
 
@@ -25,26 +28,20 @@ public class LikesService {
      * @param article_id
      * @return Boolean
      */
-    @Transactional
     public boolean addLike(Member member, Long article_id) {
-        log.warn("addLike() Parameter :: {}, {}", member, article_id);
-
         Article article = articleRepository.findById(article_id)
                 .orElseThrow(() -> new NullPointerException("This article does not exist."));
 
-        if (isNotAlreadyLike(member, article)) {
-            likeRepository.save(new Likes(article, member));
-            return true;
-        }
+        if (AlreadyLikeCheck(member, article)) return false;
 
-        return false;
+        likeRepository.save(new Likes(article, member));
+        return true;
     }
 
     /**
      * @description: 유저의 해당 article 좋아요 여부 체크
      */
-    @Transactional(readOnly = true)
-    public boolean isNotAlreadyLike(Member member, Article article) {
+    private boolean AlreadyLikeCheck(Member member, Article article) {
         return likeRepository.findByMemberAndArticle(member, article).isPresent();
     }
 }

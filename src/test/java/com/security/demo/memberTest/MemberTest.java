@@ -57,12 +57,11 @@ public class MemberTest {
     public void signUpTest() {
         Member member =  Member.builder()
                 .nickname("test nickName")
-                .accountId("test id")
+                .accountNo("test id")
                 .password("1234")
                 .account_type(Role.LESSEE)
                 .build();
         Member resultMember = memberService.signUp(member);
-        log.warn("result Member_idx :::: {}", resultMember.getMember_idx());
 
         assertEquals(resultMember.getNickname(), "test nickName");
     }
@@ -74,7 +73,7 @@ public class MemberTest {
         String account_id = "chris";
 
         Member member = memberService.findByAccountId(account_id);
-        assertEquals(member.getAccountId(), "chris");
+        assertEquals(member.getAccountNo(), "chris");
     }
 
     @Test

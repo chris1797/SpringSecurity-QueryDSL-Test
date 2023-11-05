@@ -51,7 +51,7 @@ public class JwtTokenProvider {
     // 토큰생성 (인증된 member 인스턴스를 받아 토큰 생성)
     private String createTokenByRole(Member member) {
         // ex) LESSOR 1
-        return member.getAccount_type() + " " + member.getMember_idx();
+        return member.getAccount_type() + " " + member.getMemberNo();
     }
 
     //토큰에서 값 추출

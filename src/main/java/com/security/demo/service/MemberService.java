@@ -44,15 +44,15 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public Member findByAccountId(String account_id) {
-        return queryRepository.findByAccountId(account_id);
+    public Member findByAccountId(String accountNo) {
+        return queryRepository.findByAccountId(accountNo);
 //                .orElseThrow(() -> new NullPointerException("This account_id is not exist."));
     }
 
     @Transactional
     public Member signUp(Member memberDTO) {
         Member member = Member.builder()
-                .accountId(memberDTO.getAccountId())
+                .accountNo(memberDTO.getAccountNo())
                 // password encode
                 .password(passwordEncoder().encode(memberDTO.getPassword()))
                 .nickname(memberDTO.getNickname())
