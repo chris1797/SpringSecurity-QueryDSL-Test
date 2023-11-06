@@ -1,7 +1,7 @@
 package com.security.demo.service;
 
 import com.security.demo.repository.MemberQueryRepository;
-import com.security.demo.web.dto.LoginRequest;
+import com.security.demo.domain.request.LoginRequest;
 import com.security.demo.domain.Member;
 import com.security.demo.common.config.JwtTokenProvider;
 import com.security.demo.repository.MemberRepository;
@@ -11,9 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

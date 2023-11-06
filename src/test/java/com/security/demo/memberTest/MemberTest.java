@@ -6,21 +6,17 @@ import com.security.demo.domain.Member;
 import com.security.demo.repository.MemberQueryRepository;
 import com.security.demo.repository.MemberRepository;
 import com.security.demo.service.MemberService;
-import com.security.demo.web.dto.LoginRequest;
+import com.security.demo.domain.request.LoginRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
