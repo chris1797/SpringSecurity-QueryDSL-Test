@@ -3,6 +3,7 @@ package com.security.demo.memberTest;
 import com.security.demo.common.config.JwtTokenProvider;
 import com.security.demo.common.role.Role;
 import com.security.demo.domain.Member;
+import com.security.demo.domain.response.TokenResponse;
 import com.security.demo.repository.MemberQueryRepository;
 import com.security.demo.repository.MemberRepository;
 import com.security.demo.service.MemberService;
@@ -76,13 +77,13 @@ public class MemberTest {
     @DisplayName("로그인 테스트")
     public void loginTest() {
         String userId = "chris";
-        String userPwd = "123";
+        String userPwd = "test";
 
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setAccountId(userId);
         loginRequest.setPassword(userPwd);
 
-        String result = memberService.login(loginRequest);
-        assertThat(result, is("123"));
+        TokenResponse result = memberService.login(loginRequest);
+        assertThat(result, is("test"));
     }
 }

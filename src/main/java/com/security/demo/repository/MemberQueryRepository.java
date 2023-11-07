@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.security.demo.domain.QMember.member;
 
@@ -15,10 +16,10 @@ public class MemberQueryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
-    public Member findByAccountId(String accountId) {
-        return jpaQueryFactory.selectFrom(member)
+    public Optional<Member> findByAccountId(String accountId) {
+        return Optional.ofNullable(jpaQueryFactory.selectFrom(member)
                 .where(member.accountNo.eq(accountId))
-                .fetchOne();
+                .fetchOne());
     }
 
     public void updateNickname(String nickName) {

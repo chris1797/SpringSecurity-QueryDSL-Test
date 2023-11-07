@@ -1,5 +1,6 @@
 package com.security.demo.service;
 
+import com.security.demo.domain.response.TokenResponse;
 import com.security.demo.repository.MemberQueryRepository;
 import com.security.demo.domain.request.LoginRequest;
 import com.security.demo.domain.Member;
@@ -11,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,18 +35,18 @@ public class MemberService {
      * @return (String) Jwt Token
      */
     @Transactional(readOnly = true)
-    public String login(LoginRequest loginRequest) {
-        Member member = queryRepository.findByAccountId(loginRequest.getAccountId());
-//                .orElseThrow(() -> new NullPointerException("This user does not exist."));
+    public TokenResponse login(LoginRequest loginRequest) {
+        Member member = queryRepository.findByAccountId(loginRequest.getAccountId())
+                .orElseThrow(() -> new NullPointerException("This user does not exist."));
 
         JwtTokenProvider jwtTokenProvider = new JwtTokenProvider(secretKey, expiredMs, member);
-        return jwtTokenProvider.getToken();
+        return new TokenResponse(jwtTokenProvider.getToken(), "Bearer");
     }
 
     @Transactional(readOnly = true)
-    public Member findByAccountId(String accountNo) {
-        return queryRepository.findByAccountId(accountNo);
-//                .orElseThrow(() -> new NullPointerException("This account_id is not exist."));
+    public Member findByAccountId(String accountId) {
+        return queryRepository.findByAccountId(accountId)
+                .orElseThrow(() -> new NullPointerException("This account_id is not exist."));
     }
 
     @Transactional

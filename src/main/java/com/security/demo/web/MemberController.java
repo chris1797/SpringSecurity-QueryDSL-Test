@@ -15,30 +15,23 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/member")
 public class MemberController {
 
     private final MemberService memberService;
 
-
-    @GetMapping("/login")
-    public ModelAndView login() {
-        ModelAndView mv = new ModelAndView("login");
-        mv.addObject("member", new LoginRequest());
-        return mv;
-    }
 
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(LoginRequest loginRequest) {
         log.warn("접속한 ID : {}", loginRequest.getAccountId());
         log.warn("접속한 Password : {}", loginRequest.getPassword());
 
-        TokenResponse token = new TokenResponse(memberService.login(loginRequest), "Bearer");
-
-        return ResponseEntity.ok().body(token);
+        return ResponseEntity.ok().body(memberService.login(loginRequest));
     }
 
     @PostMapping("/signup")
@@ -46,9 +39,8 @@ public class MemberController {
         return Objects.isNull(memberService.signUp(memberDTO).getMemberNo()) ? "redirect:/signup" : "redirect:/main";
     }
 
-    @GetMapping("/info")
-    public ResponseEntity<Member> getUserFromToken(HttpServletRequest request) {
-        String accountId = (String) request.getAttribute("accountId");
+    @GetMapping("/{accountId}")
+    public ResponseEntity<Member> getUserFromToken(@PathVariable String accountId) {
         return ResponseEntity.ok().body(memberService.findByAccountId(accountId));
     }
 
