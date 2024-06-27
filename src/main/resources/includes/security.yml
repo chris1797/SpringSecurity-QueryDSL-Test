@@ -1,0 +1,5 @@
+security:
+  jwt:
+    token:
+      secret-key: hello
+    expiration: 3600000
