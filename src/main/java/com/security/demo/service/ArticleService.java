@@ -1,8 +1,7 @@
 package com.security.demo.service;
 
-import com.security.demo.domain.Article;
+import com.security.demo.domain.entity.Article;
 import com.security.demo.queryDsl.ArticleRepositorySupport;
-import com.security.demo.repository.ArticleQueryRepository;
 import com.security.demo.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @Transactional

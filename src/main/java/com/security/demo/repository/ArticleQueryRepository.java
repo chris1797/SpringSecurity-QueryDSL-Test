@@ -1,7 +1,7 @@
 package com.security.demo.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.security.demo.domain.Article;
+import com.security.demo.domain.entity.Article;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +25,16 @@ public class ArticleQueryRepository {
         return jpaQueryFactory.delete(article)
                 .where(article.articleNo.eq(articleNo))
                 .execute();
+    }
+
+    public List<Article> findByArticle_Idx(Long article_idx) {
+        return jpaQueryFactory.selectFrom(article)
+                .where(article.articleNo.eq(article_idx))
+                .fetch();
+    }
+
+    public List<Article> findAll() {
+        return jpaQueryFactory.select(article)
+                .fetch();
     }
 }

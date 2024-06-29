@@ -1,4 +1,4 @@
-package com.security.demo.domain;
+package com.security.demo.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

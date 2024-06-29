@@ -1,4 +1,4 @@
-package com.security.demo.domain;
+package com.security.demo.domain.entity;
 
 import com.security.demo.common.role.Role;
 import com.security.demo.common.role.Role_withdraw;

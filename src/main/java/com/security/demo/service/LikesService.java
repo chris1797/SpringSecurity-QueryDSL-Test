@@ -1,16 +1,14 @@
 package com.security.demo.service;
 
-import com.security.demo.domain.Article;
-import com.security.demo.domain.Likes;
-import com.security.demo.domain.Member;
+import com.security.demo.domain.entity.Article;
+import com.security.demo.domain.entity.Likes;
+import com.security.demo.domain.entity.Member;
 import com.security.demo.repository.ArticleRepository;
 import com.security.demo.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
 
 @Slf4j
 @Service

@@ -1,19 +1,13 @@
 package com.security.demo.likeTest;
 
-import com.security.demo.domain.Article;
-import com.security.demo.domain.Member;
+import com.security.demo.domain.entity.Article;
+import com.security.demo.domain.entity.Member;
 import com.security.demo.service.LikesService;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @ExtendWith(SpringExtension.class) : 확장을 선언적으로 등록

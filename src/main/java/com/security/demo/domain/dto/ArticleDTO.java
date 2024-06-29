@@ -1,14 +1,10 @@
 package com.security.demo.domain.dto;
 
-import com.security.demo.domain.Article;
-import com.security.demo.domain.Likes;
-import com.security.demo.domain.Member;
-import lombok.Builder;
+import com.security.demo.domain.entity.Member;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor

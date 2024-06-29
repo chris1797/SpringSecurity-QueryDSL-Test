@@ -1,7 +1,7 @@
-package com.security.demo.web;
+package com.security.demo.controller;
 
-import com.security.demo.domain.Article;
-import com.security.demo.domain.Member;
+import com.security.demo.domain.entity.Article;
+import com.security.demo.domain.entity.Member;
 import com.security.demo.service.ArticleService;
 import com.security.demo.service.LikesService;
 import lombok.RequiredArgsConstructor;

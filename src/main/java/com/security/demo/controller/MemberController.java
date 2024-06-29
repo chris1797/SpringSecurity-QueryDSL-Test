@@ -1,6 +1,6 @@
-package com.security.demo.web;
+package com.security.demo.controller;
 
-import com.security.demo.domain.Member;
+import com.security.demo.domain.entity.Member;
 import com.security.demo.common.role.Role;
 import com.security.demo.service.MemberService;
 import com.security.demo.domain.request.LoginRequest;
@@ -9,13 +9,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @RestController

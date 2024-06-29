@@ -1,6 +1,6 @@
 package com.security.demo.common.config;
 
-import com.security.demo.domain.Member;
+import com.security.demo.domain.entity.Member;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
@@ -75,10 +75,7 @@ public class JwtTokenProvider {
                     .build()
                     .parseClaimsJws(token); // 파싱 및 검증, 실패 시 에러
 
-            if (claims.getBody().getExpiration().before(new Date())) {
-                return false;
-            }
-            return true;
+            return !claims.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
             return false;
         }

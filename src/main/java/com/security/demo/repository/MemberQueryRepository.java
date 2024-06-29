@@ -1,7 +1,7 @@
 package com.security.demo.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.security.demo.domain.Member;
+import com.security.demo.domain.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -32,5 +32,11 @@ public class MemberQueryRepository {
         jpaQueryFactory.delete(member)
                 .where(member.memberNo.eq(memberNo))
                 .execute();
+    }
+
+    public List<Member> findByAccountId2(String accountNo) {
+        return jpaQueryFactory.selectFrom(member)
+                .where(member.accountNo.eq(accountNo))
+                .fetch();
     }
 }

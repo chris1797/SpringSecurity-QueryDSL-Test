@@ -1,4 +1,4 @@
-package com.security.demo.domain;
+package com.security.demo.domain.entity;
 
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;

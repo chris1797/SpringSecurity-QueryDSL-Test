@@ -1,4 +1,4 @@
-import com.security.demo.domain.Student;
+import com.security.demo.domain.entity.Student;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

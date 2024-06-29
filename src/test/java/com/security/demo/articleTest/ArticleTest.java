@@ -1,12 +1,11 @@
 package com.security.demo.articleTest;
 
-import com.security.demo.domain.Article;
+import com.security.demo.domain.entity.Article;
 import com.security.demo.repository.ArticleQueryRepository;
 import com.security.demo.repository.ArticleRepository;
 import com.security.demo.service.ArticleService;
 import com.security.demo.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
