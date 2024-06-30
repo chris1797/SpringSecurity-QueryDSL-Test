@@ -1,12 +1,10 @@
 package com.security.demo.domain.entity;
 
-import com.sun.istack.NotNull;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
@@ -14,7 +12,6 @@ import java.util.Set;
 
 @Getter
 @Entity
-@RequiredArgsConstructor
 @NoArgsConstructor
 public class Article {
 
@@ -34,10 +31,11 @@ public class Article {
 
     private int viewCnt;
 
+//    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+//    Set<Likes> likes = new HashSet<>(); // 전체글 리스트에서 좋아요 수를 나타내기 위한 양방향 관계
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     Set<Likes> likes = new HashSet<>(); // 전체글 리스트에서 좋아요 수를 나타내기 위한 양방향 관계
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     private LocalDateTime regDate; // 작성일
 

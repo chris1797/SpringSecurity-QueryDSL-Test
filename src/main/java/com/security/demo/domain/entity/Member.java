@@ -2,11 +2,10 @@ package com.security.demo.domain.entity;
 
 import com.security.demo.common.role.Role;
 import com.security.demo.common.role.Role_withdraw;
-import com.sun.istack.NotNull;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 
 @Getter
 @Entity
@@ -22,11 +21,9 @@ public class Member {
     @Column(nullable = false)
     private String nickname;
 
-    @NotNull
     @Column(nullable = false, name = "account_no")
     private String accountNo;
 
-    @NotNull
     private String password;
 
     @Enumerated(EnumType.STRING)

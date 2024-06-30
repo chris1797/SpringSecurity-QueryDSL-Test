@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.security.demo.domain.QArticle.article;
 
 @Repository
 @RequiredArgsConstructor

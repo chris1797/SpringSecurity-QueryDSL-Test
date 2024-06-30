@@ -1,7 +1,6 @@
 package com.security.demo.service;
 
 import com.security.demo.domain.entity.Article;
-import com.security.demo.queryDsl.ArticleRepositorySupport;
 import com.security.demo.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import java.util.Objects;
 public class ArticleService {
 
     private final ArticleRepository articleRepository;
-    private final ArticleRepositorySupport dao;
 
 
     public Boolean deleteArticle(Long articleNo) {
