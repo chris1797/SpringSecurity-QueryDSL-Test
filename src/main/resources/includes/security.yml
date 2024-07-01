@@ -2,4 +2,4 @@ security:
   jwt:
     token:
       secret-key: hello
-    expiration: 3600000
+      expire-length: 3600000

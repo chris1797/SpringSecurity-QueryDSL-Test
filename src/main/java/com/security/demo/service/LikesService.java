@@ -3,6 +3,7 @@ package com.security.demo.service;
 import com.security.demo.domain.entity.Article;
 import com.security.demo.domain.entity.Likes;
 import com.security.demo.domain.entity.Member;
+import com.security.demo.repository.ArticleQueryRepository;
 import com.security.demo.repository.ArticleRepository;
 import com.security.demo.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class LikesService {
 
     private final LikeRepository likeRepository;
-    private final ArticleRepository articleRepository;
+    private final ArticleQueryRepository articleRepository;
 
 
     /**
@@ -27,8 +27,7 @@ public class LikesService {
      * @return Boolean
      */
     public boolean addLike(Member member, Long article_id) {
-        Article article = articleRepository.findById(article_id)
-                .orElseThrow(() -> new NullPointerException("This article does not exist."));
+        Article article = articleRepository.findByArticleNo(article_id);
 
         if (AlreadyLikeCheck(member, article)) return false;
 

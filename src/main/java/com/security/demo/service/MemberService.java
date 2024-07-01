@@ -17,12 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService {
 
-    private final MemberRepository memberRepository;
-    private final MemberQueryRepository queryRepository;
+    private final MemberQueryRepository memberRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
-    @Value("${jwt.secret}")
+    @Value("${security.jwt.token.secret-key}")
     private String secretKey;
     private final Long expiredMs = 1000 * 60 * 60L;
 
@@ -34,7 +33,7 @@ public class MemberService {
      */
     @Transactional(readOnly = true)
     public TokenResponse login(LoginRequest loginRequest) {
-        Member member = queryRepository.findByAccountId(loginRequest.getAccountId())
+        Member member = memberRepository.findByAccountId(loginRequest.getAccountId())
                 .orElseThrow(() -> new NullPointerException("This user does not exist."));
 
         JwtTokenProvider jwtTokenProvider = new JwtTokenProvider(secretKey, expiredMs, member);
@@ -43,7 +42,7 @@ public class MemberService {
 
     @Transactional(readOnly = true)
     public Member findByAccountId(String accountId) {
-        return queryRepository.findByAccountId(accountId)
+        return memberRepository.findByAccountId(accountId)
                 .orElseThrow(() -> new NullPointerException("This account_id is not exist."));
     }
 

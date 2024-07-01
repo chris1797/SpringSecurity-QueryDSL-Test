@@ -1,7 +1,7 @@
 package com.security.demo.service;
 
 import com.security.demo.domain.entity.Article;
-import com.security.demo.repository.ArticleRepository;
+import com.security.demo.repository.ArticleQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,18 +10,17 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class ArticleService {
 
-    private final ArticleRepository articleRepository;
+    private final ArticleQueryRepository articleRepository;
 
 
     public Boolean deleteArticle(Long articleNo) {
-        Article article = articleRepository.findById(articleNo).orElseThrow(() -> new NullPointerException("articleNo is not exist."));
+        Article article = articleRepository.findByArticleNo(articleNo);
         if (Objects.isNull(article)) return false;
 
-        articleRepository.deleteById(articleNo);
+        articleRepository.deleteByArticleNo(articleNo);
         return true;
     }
 
@@ -31,8 +30,7 @@ public class ArticleService {
         String[] role = authentication.split(" ");
         if (role[0] == null || role[0].isEmpty()) throw new Exception("No authentication.");
 
-        return articleRepository.findById(articleNo)
-                .orElseThrow(() -> new NullPointerException("This article does not exist."));
+        return articleRepository.findByArticleNo(articleNo);
     }
 
     public List<Article> getAllArticle() {
@@ -40,7 +38,7 @@ public class ArticleService {
     }
 
     public Boolean save(Article article) {
-        return articleRepository.save(article).getArticleNo() > 0;
+        return articleRepository.save(article) > 0;
     }
 
 

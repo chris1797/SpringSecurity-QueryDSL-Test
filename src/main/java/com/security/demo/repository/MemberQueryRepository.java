@@ -1,5 +1,6 @@
 package com.security.demo.repository;
 
+import com.querydsl.core.types.EntityPath;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.security.demo.domain.entity.Member;
 import lombok.RequiredArgsConstructor;
@@ -8,10 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+import static com.security.demo.domain.entity.QMember.member;
+
 
 @Repository
 @RequiredArgsConstructor
-public class MemberQueryRepository {
+public class MemberQueryRepository implements MemberRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
@@ -37,5 +40,11 @@ public class MemberQueryRepository {
         return jpaQueryFactory.selectFrom(member)
                 .where(member.accountNo.eq(accountNo))
                 .fetch();
+    }
+
+    public Member save(Member member) {
+        jpaQueryFactory.insert((EntityPath<?>) member)
+                .execute();
+        return member;
     }
 }

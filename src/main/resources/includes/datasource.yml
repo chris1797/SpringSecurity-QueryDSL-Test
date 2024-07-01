@@ -1,6 +1,7 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/Security_QueryDSL?autoReconnect=true&useSSL=false&amp&serverTimezone=UTC
+#    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_db?autoReconnect=true&useSSL=false&amp&serverTimezone=UTC
     username: root
-    password: 1234
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
