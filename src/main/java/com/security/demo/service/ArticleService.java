@@ -1,7 +1,7 @@
 package com.security.demo.service;
 
 import com.security.demo.domain.entity.Article;
-import com.security.demo.repository.ArticleQueryRepository;
+import com.security.demo.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ArticleService {
 
-    private final ArticleQueryRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
 
     public Boolean deleteArticle(Long articleNo) {
@@ -37,8 +37,8 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-    public Boolean save(Article article) {
-        return articleRepository.save(article) > 0;
+    public Article save(Article article) {
+        return articleRepository.save(article);
     }
 
 

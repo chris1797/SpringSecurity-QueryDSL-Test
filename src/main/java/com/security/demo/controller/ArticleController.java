@@ -27,7 +27,7 @@ public class ArticleController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Boolean> ArticleWrite(Article article){
+    public ResponseEntity<Article> ArticleWrite(Article article){
         return ResponseEntity.ok(articleService.save(article));
     }
 
@@ -40,7 +40,7 @@ public class ArticleController {
     }
 
     @PatchMapping("/edit/{article_idx}")
-    public ResponseEntity<Boolean> articleEdit(Model model, Article article) {
+    public ResponseEntity<Article> articleEdit(Model model, Article article) {
         return ResponseEntity.ok().body(articleService.save(article));
     }
 
