@@ -3,6 +3,7 @@ package com.security.demo.service;
 import com.security.demo.domain.entity.Article;
 import com.security.demo.domain.entity.Likes;
 import com.security.demo.domain.entity.Member;
+import com.security.demo.repository.ArticleRepository;
 import com.security.demo.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class LikesService {
 
     private final LikeRepository likeRepository;
-    private final ArticleQueryRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
 
     /**

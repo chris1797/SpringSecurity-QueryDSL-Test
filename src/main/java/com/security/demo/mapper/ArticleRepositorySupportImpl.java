@@ -1,4 +1,4 @@
-package com.security.demo.repository;
+package com.security.demo.mapper;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.security.demo.domain.entity.Article;
@@ -11,7 +11,7 @@ import static com.security.demo.domain.entity.QArticle.article;
 
 @Repository
 @RequiredArgsConstructor
-public class ArticleCustomRepositoryImpl implements ArticleCustomRepository {
+public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
 
     private final JPAQueryFactory jpaQueryFactory;
 

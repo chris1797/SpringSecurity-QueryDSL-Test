@@ -1,7 +1,6 @@
 package com.security.demo.service;
 
 import com.security.demo.domain.response.TokenResponse;
-import com.security.demo.repository.MemberQueryRepository;
 import com.security.demo.domain.request.LoginRequest;
 import com.security.demo.domain.entity.Member;
 import com.security.demo.common.config.JwtTokenProvider;
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService {
 
-    private final MemberQueryRepository memberRepository;
+    private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
@@ -46,7 +45,6 @@ public class MemberService {
                 .orElseThrow(() -> new NullPointerException("This account_id is not exist."));
     }
 
-    @Transactional
     public Member signUp(Member memberDTO) {
         Member member = Member.builder()
                 .accountNo(memberDTO.getAccountNo())

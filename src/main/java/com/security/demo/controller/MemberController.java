@@ -33,7 +33,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     public String signup(Member memberDTO) {
-        return Objects.isNull(memberService.signUp(memberDTO).getMemberNo()) ? "redirect:/signup" : "redirect:/main";
+        return Objects.isNull(memberService.signUp(memberDTO)) ? "redirect:/signup" : "redirect:/main";
     }
 
     @GetMapping("/{accountId}")

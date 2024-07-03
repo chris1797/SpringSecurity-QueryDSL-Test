@@ -4,7 +4,6 @@ import com.security.demo.common.config.JwtTokenProvider;
 import com.security.demo.common.role.Role;
 import com.security.demo.domain.entity.Member;
 import com.security.demo.domain.response.TokenResponse;
-import com.security.demo.repository.MemberQueryRepository;
 import com.security.demo.repository.MemberRepository;
 import com.security.demo.service.MemberService;
 import com.security.demo.domain.request.LoginRequest;
