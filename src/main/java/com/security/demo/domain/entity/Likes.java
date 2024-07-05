@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 
+@Table(name = "tblLikes")
 @Getter
 @Entity
 @RequiredArgsConstructor

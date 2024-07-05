@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+@Table(name = "tblArticle")
 @Getter
 @Entity
 @NoArgsConstructor

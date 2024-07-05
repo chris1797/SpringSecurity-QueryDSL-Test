@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 
+@Table(name = "tblMember")
 @Getter
 @Entity
 @Component
