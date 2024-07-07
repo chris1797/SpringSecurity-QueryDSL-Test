@@ -22,9 +22,9 @@ public class Student {
         return new Student(original);
     }
 
-//    @Override
-//    public Student clone() throws CloneNotSupportedException {
-//        return (Student) super.clone();
-//    }
+    @Override
+    public Student clone() throws CloneNotSupportedException {
+        return (Student) super.clone();
+    }
 
 }
