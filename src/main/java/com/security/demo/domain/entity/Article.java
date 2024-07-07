@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Table(name = "tblArticle")
+@Table(name = "tbl_article")
 @Getter
 @Entity
 @NoArgsConstructor
@@ -42,18 +42,4 @@ public class Article {
 
     private LocalDateTime delDate; // 삭제일
 
-
-    @Builder
-    public Article(String title, String content, Set<Likes> likes, LocalDateTime regDate, Member member) throws Exception {
-        // Article 엔티티의 Not null인 컬럼들이 null일 경우 예외처리
-        if (title.isEmpty()) throw new Exception("Title is null");
-        if (content.isEmpty()) throw new Exception("Content is null");
-        if (member == null) throw new Exception("User is null");
-
-        this.title = title;
-        this.likes = likes;
-        this.content = content;
-        this.member = member;
-        this.regDate = regDate;
-    }
 }

@@ -7,22 +7,20 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 
-@Table(name = "tblMember")
-@Getter
+@Table
 @Entity
+@Getter
 @Component
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "id")
+    @Column(nullable = false)
     private Long memberNo;
 
-    @Column(nullable = false)
     private String nickname;
 
-    @Column(nullable = false, name = "account_no")
     private String accountNo;
 
     private String password;
