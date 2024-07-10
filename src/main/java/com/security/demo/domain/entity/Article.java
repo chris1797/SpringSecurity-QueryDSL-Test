@@ -1,8 +1,6 @@
 package com.security.demo.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Table(name = "tbl_article")
 @Getter
 @Entity
 @NoArgsConstructor

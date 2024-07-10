@@ -7,6 +7,8 @@ import com.security.demo.service.ArticleService;
 import com.security.demo.service.LikesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +25,8 @@ public class ArticleController {
     private final LikesService likeService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Article>> getArticleList(Model model) {
-        return ResponseEntity.ok().body(articleService.getAllArticle());
+    public ResponseEntity<Page<Article>> getArticleList(PageRequest pageRequest) {
+        return ResponseEntity.ok(articleService.getArticleList(pageRequest));
     }
 
     @PostMapping("/save")

@@ -31,4 +31,14 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role_withdraw quit;
 
+
+    @Builder
+    public Member(Long memberNo, String nickname, String accountNo, String password, Role account_type, Role_withdraw quit) {
+        this.memberNo = memberNo;
+        this.nickname = nickname;
+        this.accountNo = accountNo;
+        this.password = password;
+        this.account_type = account_type;
+        this.quit = quit;
+    }
 }

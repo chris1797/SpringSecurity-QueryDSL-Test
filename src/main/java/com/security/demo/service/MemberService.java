@@ -48,7 +48,6 @@ public class MemberService {
     public Member signUp(Member memberDTO) {
         Member member = Member.builder()
                 .accountNo(memberDTO.getAccountNo())
-                // password encode
                 .password(passwordEncoder().encode(memberDTO.getPassword()))
                 .nickname(memberDTO.getNickname())
                 .account_type(memberDTO.getAccount_type())
