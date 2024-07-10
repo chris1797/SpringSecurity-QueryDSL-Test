@@ -26,6 +26,11 @@ public class Likes {
     private Member member;
 
 
+    /**
+     * 게시글, 유저 정보를 받아 좋아요 정보를 저장
+     * @param article 게시글
+     * @param member 유저
+     */
     public Likes(Article article, Member member) {
         this.article = article;
         this.member = member;

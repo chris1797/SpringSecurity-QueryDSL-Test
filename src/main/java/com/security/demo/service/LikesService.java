@@ -20,23 +20,22 @@ public class LikesService {
 
     /**
      * 좋아요 추가
-     * @param member
-     * @param article_id
+     *
+     * @param member 유저
+     * @param article_id 게시글 번호
      * @return Boolean
      */
-    public boolean addLike(Member member, Long article_id) {
+    public Likes addLike(Member member, Long article_id) {
         Article article = articleRepository.findByArticleNo(article_id);
+        if (AlreadyLikeCheck(member, article)) throw new IllegalArgumentException("이미 좋아요를 누른 게시글입니다.");
 
-        if (AlreadyLikeCheck(member, article)) return false;
-
-        likeRepository.save(new Likes(article, member));
-        return true;
+        return likeRepository.save(new Likes(article, member));
     }
 
     /**
      * @description: 유저의 해당 article 좋아요 여부 체크
      */
-    private boolean AlreadyLikeCheck(Member member, Article article) {
+    private Boolean AlreadyLikeCheck(Member member, Article article) {
         return likeRepository.findByMemberAndArticle(member, article).isPresent();
     }
 }

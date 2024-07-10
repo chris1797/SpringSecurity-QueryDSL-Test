@@ -1,6 +1,7 @@
 package com.security.demo.controller;
 
 import com.security.demo.domain.entity.Article;
+import com.security.demo.domain.entity.Likes;
 import com.security.demo.domain.entity.Member;
 import com.security.demo.service.ArticleService;
 import com.security.demo.service.LikesService;
@@ -50,9 +51,9 @@ public class ArticleController {
     }
 
     @PostMapping("/like")
-    public ResponseEntity<Boolean> addLike(Member member,
-                           @RequestParam("article_idx") Long article_idx) {
-        return ResponseEntity.ok().body(likeService.addLike(member, article_idx));
+    public ResponseEntity<Likes> addLike(Member member,
+                                         @RequestParam("article_id") Long article_id) {
+        return ResponseEntity.ok().body(likeService.addLike(member, article_id));
     }
 
 }

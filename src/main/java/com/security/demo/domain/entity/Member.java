@@ -31,13 +31,4 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role_withdraw quit;
 
-
-    @Builder
-    public Member(String nickname, String accountNo, String password, Role account_type, Role_withdraw quit) {
-        this.accountNo = accountNo;
-        this.nickname = nickname;
-        this.password = password;
-        this.account_type = account_type;
-        this.quit = quit;
-    }
 }
