@@ -1,16 +1,15 @@
 package com.security.demo.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 
-@Table
 @Getter
 @Entity
-@RequiredArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor
 public class Likes {
 
     @Id
@@ -25,6 +24,8 @@ public class Likes {
     @JoinColumn(name = "member_no", nullable = false)
     private Member member;
 
+    private LocalDateTime regDate;
+
 
     /**
      * 게시글, 유저 정보를 받아 좋아요 정보를 저장
@@ -34,5 +35,6 @@ public class Likes {
     public Likes(Article article, Member member) {
         this.article = article;
         this.member = member;
+        this.regDate = LocalDateTime.now();
     }
 }

@@ -32,11 +32,10 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     Set<Likes> likes = new HashSet<>(); // 전체글 리스트에서 좋아요 수를 나타내기 위한 양방향 관계
 
+    private LocalDateTime regDate;
 
-    private LocalDateTime regDate; // 작성일
+    private LocalDateTime uptDate;
 
-    private LocalDateTime uptDate; // 수정일
-
-    private LocalDateTime delDate; // 삭제일
+    private LocalDateTime delDate;
 
 }

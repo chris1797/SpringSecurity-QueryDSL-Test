@@ -6,11 +6,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 
-@Table
 @Entity
 @Getter
-@Component
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
@@ -31,6 +30,8 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role_withdraw quit;
 
+    private LocalDateTime regDate;
+
 
     @Builder
     public Member(Long memberNo, String nickname, String accountNo, String password, Role account_type, Role_withdraw quit) {
@@ -40,5 +41,6 @@ public class Member {
         this.password = password;
         this.account_type = account_type;
         this.quit = quit;
+        this.regDate = LocalDateTime.now();
     }
 }
