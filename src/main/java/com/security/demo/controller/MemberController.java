@@ -1,7 +1,7 @@
 package com.security.demo.controller;
 
 import com.security.demo.domain.entity.Member;
-import com.security.demo.common.role.Role;
+import com.security.demo.common.constants.Role;
 import com.security.demo.service.MemberService;
 import com.security.demo.domain.request.LoginRequest;
 import com.security.demo.domain.response.TokenResponse;

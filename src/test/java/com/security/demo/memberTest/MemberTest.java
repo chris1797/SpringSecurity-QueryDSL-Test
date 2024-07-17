@@ -1,7 +1,7 @@
 package com.security.demo.memberTest;
 
 import com.security.demo.common.config.JwtTokenProvider;
-import com.security.demo.common.role.Role;
+import com.security.demo.common.constants.Role;
 import com.security.demo.domain.entity.Member;
 import com.security.demo.domain.response.TokenResponse;
 import com.security.demo.repository.MemberRepository;

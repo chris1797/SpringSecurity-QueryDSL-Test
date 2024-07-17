@@ -1,10 +1,9 @@
 package com.security.demo.domain.entity;
 
-import com.security.demo.common.role.Role;
-import com.security.demo.common.role.Role_withdraw;
+import com.security.demo.common.constants.Role;
+import com.security.demo.common.constants.Status;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -28,13 +27,13 @@ public class Member {
     private Role account_type;
 
     @Enumerated(EnumType.STRING)
-    private Role_withdraw quit;
+    private Status quit;
 
     private LocalDateTime regDate;
 
 
     @Builder
-    public Member(Long memberNo, String nickname, String accountNo, String password, Role account_type, Role_withdraw quit) {
+    public Member(Long memberNo, String nickname, String accountNo, String password, Role account_type, Status quit) {
         this.memberNo = memberNo;
         this.nickname = nickname;
         this.accountNo = accountNo;

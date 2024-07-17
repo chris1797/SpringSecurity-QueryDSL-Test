@@ -1,4 +1,4 @@
-package com.security.demo.common.role;
+package com.security.demo.common.constants;
 
 public enum Role {
 
