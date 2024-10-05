@@ -7,10 +7,8 @@ import com.security.demo.domain.response.TokenResponse;
 import com.security.demo.repository.MemberRepository;
 import com.security.demo.service.MemberService;
 import com.security.demo.domain.request.LoginRequest;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,17 +17,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
  * @RunWith(SpringRunner.class) : JUnit4에서 SpringMvc - service 테스트를 하기 위해 선언
  */
 
-@Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class MemberTest {
 
     @InjectMocks
@@ -40,9 +35,6 @@ public class MemberTest {
 
     @Mock
     MemberRepository memberRepository;
-
-    @Mock
-    MemberQueryRepository queryRepository;
 
     @Mock
     JwtTokenProvider jwtTokenProvider;
@@ -83,6 +75,6 @@ public class MemberTest {
         loginRequest.setPassword(userPwd);
 
         TokenResponse result = memberService.login(loginRequest);
-        assertThat(result, is("test"));
+        assertEquals(result, is("test"));
     }
 }
