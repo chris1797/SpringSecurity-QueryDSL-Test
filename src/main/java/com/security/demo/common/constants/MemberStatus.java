@@ -1,9 +1,9 @@
 package com.security.demo.common.constants;
 
-public enum Status {
+public enum MemberStatus {
 
     WITHDRAW("WITHDRAW"),
     ACTIVE("ACTIVE");
 
-    Status(String value) {}
+    MemberStatus(String value) {}
 }

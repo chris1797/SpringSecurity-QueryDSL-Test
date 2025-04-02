@@ -1,4 +1,4 @@
-package com.security.demo.common.config;
+package com.security.demo.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

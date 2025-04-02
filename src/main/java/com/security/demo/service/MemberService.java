@@ -1,9 +1,10 @@
 package com.security.demo.service;
 
+import com.security.demo.domain.request.SignUpRequest;
 import com.security.demo.domain.response.TokenResponse;
 import com.security.demo.domain.request.LoginRequest;
 import com.security.demo.domain.entity.Member;
-import com.security.demo.common.config.JwtTokenProvider;
+import com.security.demo.config.security.JwtTokenProvider;
 import com.security.demo.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
 
 
     @Value("${security.jwt.token.secret-key}")
@@ -45,14 +46,14 @@ public class MemberService {
                 .orElseThrow(() -> new NullPointerException("This account_id is not exist."));
     }
 
-    public Member signUp(Member memberDTO) {
+    public Long signUp(SignUpRequest request) {
         Member member = Member.builder()
-                .accountNo(memberDTO.getAccountNo())
-                .password(passwordEncoder().encode(memberDTO.getPassword()))
-                .nickname(memberDTO.getNickname())
-                .account_type(memberDTO.getAccount_type())
+                .email(request.email())
+                .password(passwordEncoder().encode(request.password()))
+                .role(request.role())
                 .build();
-        return memberRepository.save(member);
+
+        return memberRepository.save(member).getId();
     }
 
 

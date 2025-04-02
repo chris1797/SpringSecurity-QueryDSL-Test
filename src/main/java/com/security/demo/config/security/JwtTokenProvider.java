@@ -1,4 +1,4 @@
-package com.security.demo.common.config;
+package com.security.demo.config.security;
 
 import com.security.demo.domain.entity.Member;
 import io.jsonwebtoken.*;
@@ -51,7 +51,7 @@ public class JwtTokenProvider {
     // 토큰생성 (인증된 member 인스턴스를 받아 토큰 생성)
     private String createTokenByRole(Member member) {
         // ex) LESSOR 1
-        return member.getAccount_type() + " " + member.getMemberNo();
+        return member.getRole() + " " + member.getId();
     }
 
     //토큰에서 값 추출

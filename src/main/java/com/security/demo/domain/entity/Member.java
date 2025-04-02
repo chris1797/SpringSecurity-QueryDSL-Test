@@ -1,7 +1,7 @@
 package com.security.demo.domain.entity;
 
 import com.security.demo.common.constants.Role;
-import com.security.demo.common.constants.Status;
+import com.security.demo.common.constants.MemberStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,31 +15,28 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long memberNo;
+    private Long id;
 
-    private String nickname;
-
-    private String accountNo;
+    @Column(nullable = false)
+    private String email;
 
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Role account_type;
+    private Role role;
 
     @Enumerated(EnumType.STRING)
-    private Status quit;
+    private MemberStatus memberStatus;
 
-    private LocalDateTime regDate;
+    private LocalDateTime createdAt;
 
 
     @Builder
-    public Member(Long memberNo, String nickname, String accountNo, String password, Role account_type, Status quit) {
-        this.memberNo = memberNo;
-        this.nickname = nickname;
-        this.accountNo = accountNo;
+    public Member(String email, String password, Role role) {
+        this.email = email;
         this.password = password;
-        this.account_type = account_type;
-        this.quit = quit;
-        this.regDate = LocalDateTime.now();
+        this.role = role;
+        this.memberStatus = MemberStatus.ACTIVE;
+        this.createdAt = LocalDateTime.now();
     }
 }

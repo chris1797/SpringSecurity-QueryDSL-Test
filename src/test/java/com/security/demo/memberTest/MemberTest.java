@@ -1,6 +1,6 @@
 package com.security.demo.memberTest;
 
-import com.security.demo.common.config.JwtTokenProvider;
+import com.security.demo.config.security.JwtTokenProvider;
 import com.security.demo.common.constants.Role;
 import com.security.demo.domain.entity.Member;
 import com.security.demo.domain.response.TokenResponse;
@@ -13,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
